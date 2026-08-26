@@ -209,6 +209,13 @@ def main():
               f"{cap:5d} {100*abs(v)/cap:8.0f}%")
 
     payload["curves_fri"] = {s: [round(v, 1) for _, v in curves[s]] for s in curves}
+    payload["hourly"] = {f"{d}": [round(hourly[(d, h)][0] / (n_days.get(d, 1) or 1), 1)
+                                  for h in range(24)] for d in TARGET_DOWS}
+    payload["hourly_esh"] = {f"{d}": [round(hourly[(d, h)][1] / max(hourly[(d, h)][0], 1), 3)
+                                      for h in range(24)] for d in TARGET_DOWS}
+    payload["capacity"] = {s: stations[s]["capacity"] for s in stations}
+    payload["names"] = {s: stations[s]["name"] for s in stations}
+    payload["zones"] = {s: stations[s]["zone"] for s in stations}
     payload["curve_start_min"] = 300
     payload["curve_bin"] = BIN
     with open(OUT, "w") as f:

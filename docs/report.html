@@ -1,0 +1,431 @@
+<title>Williamsburg Bike Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --plane:#f4f6f8; --surface:#fdfdfe; --surface-2:#eef1f5;
+  --ink:#0b0d10; --ink-2:#4e545e; --muted:#7d8592;
+  --line:#dfe4ea; --hair:rgba(11,13,16,.10);
+  --blue:#2a78d6; --red:#d03b3b; --mid:#e8eaee;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
+  --band:#12161c; --band-ink:#f2f4f7; --band-ink2:#98a2b1;
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --plane:#0b0d10; --surface:#161a20; --surface-2:#1d222a;
+    --ink:#f2f4f7; --ink-2:#b8bec8; --muted:#868d98;
+    --line:#272d36; --hair:rgba(255,255,255,.10);
+    --blue:#3987e5; --red:#e66767; --mid:#2b313a;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+    --band:#04070b; --band-ink:#f2f4f7; --band-ink2:#8d97a6;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0b0d10; --surface:#161a20; --surface-2:#1d222a;
+  --ink:#f2f4f7; --ink-2:#b8bec8; --muted:#868d98;
+  --line:#272d36; --hair:rgba(255,255,255,.10);
+  --blue:#3987e5; --red:#e66767; --mid:#2b313a;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+  --band:#04070b; --band-ink:#f2f4f7; --band-ink2:#8d97a6;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--plane); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.58; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:"Bricolage Grotesque","IBM Plex Sans",system-ui,sans-serif;
+  text-wrap:balance;margin:0;letter-spacing:-.02em}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* ---- header band ---- */
+.band{background:var(--band);color:var(--band-ink);padding:56px 0 46px;
+  border-bottom:1px solid var(--hair)}
+.band .eyebrow{color:var(--band-ink2)}
+.band h1{font-size:clamp(34px,6.2vw,58px);font-weight:800;line-height:1.02;margin:14px 0 0}
+.band .lede{color:var(--band-ink2);max-width:60ch;margin:18px 0 0;font-size:17px}
+.band .meta{color:var(--band-ink2);font-family:"IBM Plex Mono",monospace;
+  font-size:12px;margin-top:26px;letter-spacing:.02em}
+
+/* ---- stat row ---- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);margin:34px 0 0}
+.stat{background:var(--surface);padding:18px 20px}
+.stat .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+  font-size:30px;line-height:1.05;letter-spacing:-.03em}
+.stat .k{font-size:13px;color:var(--ink-2);margin-top:5px;line-height:1.35}
+
+section{margin:56px 0 0}
+section h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin:12px 0 0}
+section p{color:var(--ink-2);max-width:66ch}
+.card{background:var(--surface);border:1px solid var(--line);padding:22px;margin-top:22px}
+.card h3{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.card .sub{font-size:13px;color:var(--muted);margin-top:3px;max-width:70ch}
+.scroll{overflow-x:auto}
+figure{margin:0}
+svg{display:block;max-width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 0;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:11px;height:11px;border-radius:2px;flex:none}
+
+.grid6{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:18px}
+.mini{border:1px solid var(--line);background:var(--surface);padding:12px 13px 9px}
+.mini .nm{font-size:13px;font-weight:600;line-height:1.28;letter-spacing:-.01em}
+.mini .zn{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+.mini .fig{font-family:"IBM Plex Mono",monospace;font-size:12.5px;margin-top:7px;
+  font-variant-numeric:tabular-nums;font-weight:500}
+
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin-top:8px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--hair);
+  color:var(--ink-2)}
+
+.note{border-left:2px solid var(--blue);padding:2px 0 2px 16px;margin-top:20px}
+.note p{margin:0;font-size:15px}
+.caveat{background:var(--surface-2);border:1px solid var(--line);padding:20px 22px;margin-top:18px}
+.caveat h3{font-size:14px;font-weight:600;margin-bottom:8px}
+.caveat ul{margin:0;padding-left:19px;color:var(--ink-2);font-size:14.5px}
+.caveat li{margin:7px 0}
+.caveat li b{color:var(--ink);font-weight:600}
+
+.tip{position:fixed;pointer-events:none;z-index:50;background:var(--band);
+  color:var(--band-ink);font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  padding:7px 10px;border:1px solid var(--hair);opacity:0;transition:opacity .1s;
+  font-variant-numeric:tabular-nums;line-height:1.5;white-space:pre}
+footer{margin:64px 0 0;padding:26px 0 46px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+</style>
+
+<div class="band">
+  <div class="wrap">
+    <div class="eyebrow">Citi Bike &#183; 195 stations &#183; Aug 2025, May&#8211;Jul 2026</div>
+    <h1>The bikes are<br>moving one way.</h1>
+    <p class="lede">Four million rides through Williamsburg, Greenpoint, East Williamsburg
+      and the Lower East Side say the availability problem isn't randomness. It's a
+      current &#8212; and it runs from Manhattan into North Brooklyn, every single day.</p>
+    <p class="meta">4,248,619 rides analyzed &#183; 125 days &#183; 21% of all NYC Citi Bike traffic</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="v">4.25M</div><div class="k">rides touching the tracked area</div></div>
+    <div class="stat"><div class="v">21%</div><div class="k">of all NYC Citi Bike traffic</div></div>
+    <div class="stat"><div class="v">73&#8211;77%</div><div class="k">of those rides are e-bikes</div></div>
+    <div class="stat"><div class="v">18:00</div><div class="k">true weekday peak hour</div></div>
+  </div>
+
+  <section>
+    <div class="eyebrow">Finding 01 &#183; Timing</div>
+    <h2>The peak is at six, not five-twenty.</h2>
+    <p>Your sampling grid clusters tightly around 16:30&#8211;17:30 &#8212; four separate marks inside
+      one hour. The actual Friday peak lands a full forty minutes later, at 18:00, and the
+      6pm hour carries more rides than any other moment of the week.</p>
+
+    <div class="card">
+      <h3>Rides per day, by hour</h3>
+      <div class="sub">Averaged across 125 days. Hover for exact values.</div>
+      <figure class="scroll"><div id="chartA"></div></figure>
+      <div class="legend" id="legA"></div>
+    </div>
+
+    <div class="note">
+      <p>Saturday is not a quieter day &#8212; it carries <b>more</b> total rides than Friday
+        (37,670 vs 37,326), but spreads them across an afternoon that peaks at 16:00.
+        Weekend scarcity is a different shape entirely, not a smaller version of the weekday one.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Finding 02 &#183; Direction</div>
+    <h2>Manhattan empties. Williamsburg fills.</h2>
+    <p>Net flow inside any single half-hour is small &#8212; three or four bikes against a
+      fifty-dock station. That's why it can't explain an empty rack on its own. What does
+      is the <b>accumulated</b> flow across the whole day: a station bleeding two bikes an
+      hour from 7am is twenty down by evening.</p>
+    <p>Measured that way, the pattern is unambiguous. Five of the six deepest drains sit in
+      the Lower East Side. Three of the six deepest pile-ups sit in Williamsburg proper.</p>
+
+    <div class="card">
+      <h3>Peak accumulated pressure, as a share of the station's own capacity</h3>
+      <div class="sub">Friday, accumulated from 05:00. Negative means bikes leave faster than
+        they arrive; positive means they pile up. Scaled by capacity, because 26 bikes into a
+        28-dock station is a very different event from 30 into a 117-dock station.</div>
+      <figure class="scroll"><div id="chartC"></div></figure>
+    </div>
+
+    <div class="note">
+      <p><b>N 6 St &amp; Bedford Ave</b> is the sharpest case in the system: a 28-dock station
+        absorbing a net 26 bikes by 20:45 &#8212; <b>93% of everything it can hold</b>. If you are
+        trying to dock near the Bedford L on a Friday night, that is the station working
+        against you.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Finding 03 &#183; Shape</div>
+    <h2>Each station has a signature.</h2>
+    <p>The curves below trace accumulated pressure from 5am to midnight. The drains bottom
+      out in the early afternoon and stay down; the fills climb all evening. Their timing is
+      as useful as their depth &#8212; it tells you the hour a station stops being reliable.</p>
+    <div class="grid6" id="minis"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Finding 04 &#183; Fleet</div>
+    <h2>The e-bike is the default bike.</h2>
+    <p>Across every month measured, e-bikes carry between 72% and 77% of all rides, climbing
+      to <b>78.9%</b> by 7pm on a Friday. Classic bikes are the minority option &#8212; which
+      inverts the usual framing, where the e-bike is the scarce upgrade you hope to find.</p>
+    <p>The practical consequence: a station showing "8 bikes available" tells you very little
+      until you know the split. Six classics and two e-bikes is a materially worse station
+      than the reverse for most riders here, and the aggregate count hides that completely.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Finding 05 &#183; Traffic</div>
+    <h2>It's bridge traffic, not commuting.</h2>
+    <p>The busiest station pairs are all short hops that dead-end at a bridge ramp.
+      N 6 St &amp; Bedford Ave to S 2 St &amp; Kent Ave &#8212; the Bedford L stop to the
+      Williamsburg Bridge landing &#8212; runs 2,662 rides in four months, with 2,392 coming back
+      the other way. On the Manhattan side, Henry St &amp; Grand St and Norfolk St &amp;
+      Broome St trade the same way.</p>
+    <div class="card">
+      <h3>Busiest directed pairs</h3>
+      <div class="scroll"><table>
+        <thead><tr><th>Rides</th><th>From</th><th>To</th></tr></thead>
+        <tbody>
+          <tr><td class="n">2,662</td><td>N 6 St &amp; Bedford Ave</td><td>S 2 St &amp; Kent Ave</td></tr>
+          <tr><td class="n">2,584</td><td>S 4 St &amp; Wythe Ave</td><td>N 6 St &amp; Bedford Ave</td></tr>
+          <tr><td class="n">2,495</td><td>N 6 St &amp; Bedford Ave</td><td>S 4 St &amp; Wythe Ave</td></tr>
+          <tr><td class="n">2,392</td><td>S 2 St &amp; Kent Ave</td><td>N 6 St &amp; Bedford Ave</td></tr>
+          <tr><td class="n">2,347</td><td>Henry St &amp; Grand St</td><td>Norfolk St &amp; Broome St</td></tr>
+          <tr><td class="n">2,046</td><td>Norfolk St &amp; Broome St</td><td>Henry St &amp; Grand St</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Limits</div>
+    <h2>What this data cannot tell you.</h2>
+    <div class="caveat">
+      <ul>
+        <li><b>This is satisfied demand only.</b> A ride that never happened because no bike
+          was there leaves no record. A station that looks quiet may be starved rather than
+          unpopular &#8212; and the deepest drains are precisely where that undercount bites
+          hardest, because they hit empty and stop generating trips.</li>
+        <li><b>Rebalancing is invisible.</b> Trucks move bikes all day and file no trip. So
+          accumulated pressure is what a station <i>would</i> do unaided &#8212; read it as
+          "how much resupply this needs to stay usable," never as a live bike count.</li>
+        <li><b>Nothing here is dock availability.</b> Trips describe flow, not level. Only
+          the live 5-minute polling can say whether there is a bike in the rack right now &#8212;
+          which is exactly why both halves of this project exist.</li>
+        <li><b>Four months, one season.</b> May&#8211;August. No winter, and no rain analysis yet;
+          weather effects need enough wet days to contrast against dry ones.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Appendix</div>
+    <h2>The full ranking.</h2>
+    <div class="card"><div class="scroll"><table id="tbl">
+      <thead><tr><th>Station</th><th>Zone</th><th>Peak</th><th>At</th><th>Capacity</th><th>% of cap</th></tr></thead>
+      <tbody></tbody>
+    </table></div></div>
+  </section>
+
+  <footer>
+    Source: Citi Bike system data (S3 monthly trip archive), Aug 2025 and May&#8211;Jul 2026.
+    Filtered to 195 stations across Williamsburg, Greenpoint, East Williamsburg and the
+    Manhattan bridge landings. Accumulated pressure is the running sum of arrivals minus
+    departures from 05:00, averaged per weekday occurrence.
+  </footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const D = {"months":["202508","202605","202606","202607"],"n_trips":4248619,"n_days":{"1":17,"6":18,"5":18,"2":17,"4":19,"3":19,"0":17},"hourly":{"0":[334.6,182.7,105.1,72.4,87.1,184.9,560.2,1142.8,2013.5,1575.4,1120.0,1152.5,1259.3,1339.4,1445.1,1577.9,1915.5,2964.6,3148.2,2587.0,1861.0,1329.0,1031.9,757.1],"2":[440.2,208.7,113.1,73.2,77.3,219.2,692.7,1423.6,2577.9,1973.0,1319.6,1300.5,1334.3,1362.9,1510.7,1586.7,1985.8,3137.3,3480.8,2725.8,2082.9,1504.8,1355.2,1002.8],"4":[697.1,393.7,240.4,137.8,113.5,185.6,549.1,1063.6,1808.9,1751.3,1528.1,1577.2,1723.1,1934.5,2092.3,2175.6,2506.4,3319.1,3465.6,2986.3,2237.9,1663.7,1628.1,1547.5],"5":[1369.8,957.8,677.6,437.0,277.9,152.9,248.4,482.2,890.1,1478.6,1931.7,2245.3,2396.9,2513.7,2459.1,2639.7,2665.5,2576.1,2527.2,2454.1,1901.6,1544.8,1442.8,1399.3],"6":[1331.1,976.4,720.1,475.3,307.3,142.3,206.5,344.0,666.9,1137.3,1681.7,2115.5,2413.4,2651.8,2795.2,2710.6,2588.4,2556.4,2653.9,2275.9,1842.4,1327.1,1022.4,642.0]},"hourly_esh":{"0":[0.798,0.783,0.766,0.742,0.801,0.737,0.739,0.704,0.642,0.622,0.62,0.628,0.651,0.671,0.692,0.715,0.719,0.726,0.73,0.732,0.731,0.736,0.745,0.757],"2":[0.765,0.771,0.76,0.732,0.81,0.746,0.753,0.73,0.676,0.621,0.627,0.645,0.666,0.693,0.715,0.737,0.741,0.748,0.754,0.764,0.758,0.76,0.763,0.764],"4":[0.783,0.785,0.76,0.751,0.796,0.765,0.755,0.734,0.722,0.707,0.7,0.702,0.712,0.725,0.741,0.757,0.759,0.766,0.774,0.789,0.793,0.794,0.807,0.815],"5":[0.812,0.806,0.776,0.76,0.763,0.763,0.741,0.709,0.712,0.709,0.715,0.722,0.732,0.739,0.748,0.755,0.766,0.773,0.775,0.787,0.79,0.796,0.807,0.813],"6":[0.802,0.791,0.771,0.739,0.737,0.742,0.73,0.691,0.685,0.697,0.704,0.718,0.726,0.734,0.737,0.739,0.745,0.749,0.752,0.758,0.759,0.757,0.762,0.773]},"curve_start_min":300,"curve_bin":5,"drain":[{"name":"Grand St & Samuel Dickstein Plaza","zone":"manhattan_landing","cap":81,"curve":[0.0,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.0,-0.2,-0.5,-0.5,-0.5,-0.6,-0.6,-0.7,-0.9,-1.0,-1.3,-1.6,-1.7,-1.8,-1.7,-1.6,-1.6,-2.1,-2.4,-2.7,-3.2,-3.7,-4.3,-4.7,-5.4,-5.7,-6.5,-7.3,-7.6,-8.5,-9.4,-10.2,-11.4,-12.7,-15.3,-17.2,-19.1,-20.5,-21.7,-23.2,-24.2,-25.1,-25.8,-27.1,-28.0,-28.9,-30.0,-31.3,-32.3,-33.5,-34.4,-36.0,-37.6,-37.9,-39.2,-40.1,-41.1,-41.8,-42.7,-43.8,-44.7,-45.5,-46.2,-46.5,-46.9,-47.7,-48.6,-49.2,-49.5,-50.3,-51.1,-51.6,-52.3,-52.8,-53.4,-53.8,-54.2,-54.2,-54.6,-54.9,-55.2,-55.3,-55.4,-56.0,-56.6,-57.5,-57.7,-58.1,-58.1,-58.2,-58.4,-58.4,-58.8,-59.2,-59.4,-59.1,-59.4,-59.7,-59.9,-59.7,-59.4,-59.2,-59.4,-59.4,-59.5,-59.6,-59.8,-59.6,-59.6,-59.5,-59.5,-60.0,-60.3,-60.2,-60.1,-60.2,-60.4,-59.8,-60.1,-59.7,-59.1,-59.0,-58.9,-59.0,-58.9,-59.0,-58.9,-58.5,-58.1,-57.8,-58.2,-57.9,-57.6,-57.4,-57.6,-57.5,-57.3,-57.2,-56.8,-56.7,-56.9,-56.4,-55.9,-55.5,-55.6,-55.4,-54.9,-55.1,-55.1,-54.8,-54.7,-53.9,-53.5,-53.0,-52.5,-52.1,-51.8,-50.9,-50.6,-49.6,-48.5,-47.4,-46.7,-46.0,-44.9,-44.0,-43.2,-42.4,-42.1,-41.6,-41.1,-40.3,-39.5,-38.8,-37.9,-36.9,-35.9,-35.2,-34.6,-33.5,-32.4,-31.7,-31.0,-30.5,-29.8,-29.3,-28.7,-28.4,-27.7,-26.8,-25.8,-25.4,-24.7,-23.7,-22.7,-22.1,-21.9,-21.8,-21.7,-21.5,-21.3,-21.2,-21.1,-20.5,-20.6,-20.7,-20.4,-20.2,-20.0,-19.7,-19.7,-19.2,-18.7,-18.3,-17.6,-17.4,-16.9,-16.8,-16.2,-15.8],"low":-60.4,"at":920},{"name":"E 2 St & Ave B","zone":"manhattan_landing","cap":85,"curve":[0.0,0.0,-0.1,-0.1,-0.2,-0.2,-0.4,-0.5,-0.8,-1.3,-1.5,-2.3,-2.7,-2.8,-2.9,-3.2,-3.3,-3.9,-4.3,-5.1,-5.6,-5.7,-6.2,-6.3,-6.9,-7.5,-8.2,-8.6,-9.3,-10.1,-11.0,-11.8,-12.9,-14.2,-15.1,-15.7,-16.2,-17.3,-17.7,-18.9,-20.1,-21.5,-23.0,-24.5,-26.3,-28.6,-30.8,-32.3,-34.1,-34.9,-35.6,-37.3,-37.6,-38.8,-39.4,-40.7,-41.9,-42.8,-43.3,-44.1,-44.8,-45.1,-45.7,-46.4,-46.7,-47.2,-47.8,-48.7,-49.4,-50.1,-50.6,-50.6,-51.4,-51.5,-51.6,-51.6,-52.5,-52.6,-53.2,-53.4,-53.6,-54.1,-54.6,-55.1,-55.5,-56.2,-55.5,-55.7,-56.1,-56.4,-55.8,-56.9,-57.0,-57.4,-57.8,-58.0,-57.7,-57.9,-57.7,-57.9,-57.7,-57.6,-57.7,-57.5,-57.3,-57.4,-57.5,-57.6,-58.1,-58.2,-58.4,-58.2,-58.3,-58.2,-58.0,-57.8,-57.9,-58.3,-58.7,-58.5,-58.6,-57.8,-57.9,-57.7,-57.8,-56.9,-56.6,-56.5,-55.9,-55.6,-55.7,-55.6,-55.5,-55.3,-54.7,-54.6,-54.0,-53.5,-52.4,-52.2,-52.3,-51.4,-51.1,-50.4,-50.2,-50.7,-50.3,-49.0,-49.5,-50.0,-50.0,-49.1,-48.7,-48.7,-48.9,-48.7,-47.7,-47.4,-47.4,-46.6,-45.6,-44.8,-44.2,-43.9,-42.6,-41.7,-41.2,-39.9,-38.2,-37.7,-37.8,-36.7,-35.1,-32.9,-32.2,-30.6,-29.2,-27.8,-26.7,-25.5,-24.7,-23.2,-23.1,-21.7,-21.3,-20.2,-19.3,-19.3,-18.7,-17.3,-16.9,-16.7,-16.1,-15.4,-14.2,-13.0,-12.5,-12.0,-11.5,-11.1,-11.1,-10.7,-9.7,-9.6,-9.5,-9.2,-9.2,-9.3,-9.3,-8.9,-8.3,-7.9,-7.8,-7.3,-7.1,-7.1,-7.1,-7.6,-8.1,-7.9,-7.8,-7.5,-7.6,-6.9,-6.8,-6.7,-6.2,-6.3],"low":-58.7,"at":890},{"name":"E 6 St & Ave B","zone":"manhattan_landing","cap":59,"curve":[0.0,0.0,0.0,-0.1,-0.2,-0.3,-0.4,-0.5,-0.6,-0.6,-0.7,-0.7,-0.8,-0.8,-0.7,-0.9,-1.2,-1.4,-1.5,-1.8,-2.5,-3.0,-3.4,-3.9,-3.8,-4.1,-4.1,-4.1,-4.3,-5.1,-5.5,-6.3,-7.0,-6.9,-7.5,-8.5,-9.5,-10.1,-11.1,-11.5,-12.4,-13.6,-15.1,-16.7,-19.1,-21.1,-23.0,-24.6,-26.2,-27.8,-29.4,-30.2,-31.5,-32.9,-33.8,-34.9,-36.1,-37.4,-38.1,-39.0,-39.9,-41.0,-41.5,-42.3,-42.9,-43.8,-44.4,-44.6,-45.4,-46.1,-46.7,-47.1,-47.2,-48.1,-47.9,-48.2,-48.8,-49.5,-50.0,-50.4,-50.7,-51.2,-51.1,-50.9,-51.3,-50.9,-51.2,-51.7,-51.5,-51.9,-52.1,-52.4,-52.2,-52.0,-52.4,-52.6,-52.5,-52.5,-53.1,-53.2,-53.4,-53.7,-53.9,-53.8,-53.5,-53.9,-54.2,-54.0,-54.2,-53.8,-53.8,-53.8,-54.3,-53.6,-54.2,-54.2,-54.1,-54.3,-54.4,-54.1,-53.7,-53.8,-54.1,-54.2,-54.1,-53.9,-54.0,-53.8,-53.6,-53.1,-53.2,-52.9,-52.6,-52.6,-52.7,-52.1,-52.2,-51.6,-51.5,-50.6,-50.1,-49.2,-49.1,-48.8,-49.1,-49.7,-49.9,-49.5,-49.3,-48.4,-47.4,-46.8,-46.2,-46.4,-46.2,-45.9,-45.9,-45.9,-45.9,-45.9,-45.7,-45.3,-43.8,-43.9,-43.7,-43.3,-42.7,-42.2,-41.3,-41.1,-40.5,-39.7,-38.3,-38.1,-37.5,-37.2,-36.7,-35.4,-35.2,-34.6,-33.6,-32.8,-32.1,-30.9,-30.1,-29.6,-28.5,-27.9,-27.4,-26.4,-25.4,-24.4,-23.4,-21.6,-20.5,-19.6,-19.1,-18.5,-17.6,-17.3,-16.3,-16.2,-15.0,-14.5,-14.0,-13.7,-13.4,-13.1,-13.2,-12.4,-11.9,-11.6,-11.6,-11.7,-10.9,-10.8,-10.3,-10.3,-9.7,-9.4,-8.9,-9.1,-8.7,-8.6,-7.9,-7.3,-6.9,-6.8],"low":-54.4,"at":890},{"name":"E 2 St & Ave C","zone":"manhattan_landing","cap":84,"curve":[-0.1,-0.1,-0.1,-0.2,-0.5,-0.4,-0.5,-0.4,-0.5,-0.7,-1.0,-1.3,-1.5,-1.7,-2.1,-2.5,-3.4,-3.8,-3.7,-3.8,-4.2,-4.3,-4.1,-3.3,-3.2,-3.4,-3.2,-3.4,-3.3,-3.2,-3.3,-3.7,-3.8,-4.2,-4.7,-4.7,-5.4,-6.0,-7.4,-8.5,-9.6,-11.1,-14.2,-16.4,-19.0,-20.6,-21.7,-23.3,-24.5,-25.3,-26.2,-26.8,-27.5,-28.4,-29.2,-29.7,-30.4,-30.7,-31.5,-32.1,-32.5,-32.7,-33.5,-34.0,-34.5,-35.1,-35.9,-37.0,-37.9,-38.5,-38.8,-39.8,-39.9,-39.9,-39.9,-39.7,-40.3,-40.3,-40.8,-40.9,-41.7,-42.7,-42.8,-43.3,-43.7,-43.8,-43.9,-43.9,-44.1,-44.5,-44.9,-45.5,-46.1,-46.1,-46.4,-46.3,-46.7,-46.6,-46.3,-46.0,-46.1,-46.3,-46.2,-46.6,-46.5,-47.1,-47.2,-47.2,-47.2,-47.0,-46.6,-46.5,-46.3,-46.0,-45.8,-45.7,-46.3,-46.4,-46.5,-46.3,-46.3,-45.5,-45.7,-46.1,-46.2,-46.1,-46.5,-46.8,-46.8,-46.2,-46.3,-46.3,-46.2,-46.2,-46.6,-46.2,-45.5,-44.6,-44.5,-44.2,-44.2,-43.9,-44.1,-44.6,-44.7,-44.4,-43.8,-44.0,-43.4,-43.5,-42.9,-43.6,-43.8,-43.3,-42.8,-42.4,-42.1,-41.2,-41.4,-42.2,-42.4,-41.8,-41.9,-41.7,-41.9,-42.6,-43.2,-43.4,-43.6,-43.3,-43.0,-43.2,-43.1,-42.7,-42.3,-42.2,-42.1,-41.7,-41.5,-41.3,-41.3,-39.9,-39.7,-39.0,-38.3,-37.3,-36.7,-35.9,-35.1,-34.2,-33.4,-32.8,-31.8,-31.1,-30.1,-29.6,-28.4,-28.4,-27.5,-26.9,-26.7,-25.6,-24.6,-23.9,-22.8,-22.3,-21.4,-20.2,-19.3,-18.5,-18.2,-17.5,-17.1,-16.7,-16.1,-15.8,-15.3,-14.8,-14.9,-13.9,-13.2,-12.8,-12.5,-11.6,-11.8,-11.7,-11.4,-10.7],"low":-47.2,"at":830},{"name":"Suffolk St & Stanton St","zone":"manhattan_landing","cap":79,"curve":[-0.1,0.0,0.0,-0.1,-0.2,-0.3,-0.4,-0.5,-0.8,-0.8,-0.9,-1.2,-1.2,-1.5,-1.6,-1.8,-2.3,-2.4,-2.6,-3.1,-3.8,-4.4,-5.1,-5.4,-5.5,-5.9,-6.4,-6.6,-7.3,-8.1,-8.4,-9.3,-9.6,-10.1,-10.3,-10.1,-9.8,-9.8,-10.4,-11.4,-12.4,-13.3,-15.1,-17.2,-19.7,-22.5,-23.6,-24.9,-26.1,-26.9,-28.4,-29.5,-30.2,-30.4,-31.5,-32.8,-34.2,-34.7,-35.9,-36.2,-36.6,-37.3,-37.9,-38.8,-38.8,-39.1,-39.9,-40.5,-40.1,-39.9,-39.8,-40.1,-40.3,-40.4,-40.5,-41.1,-40.9,-41.4,-41.3,-41.5,-42.4,-42.5,-42.9,-42.7,-42.9,-43.5,-43.5,-43.2,-43.4,-43.7,-43.5,-43.9,-44.3,-44.5,-44.5,-45.4,-45.5,-46.3,-46.2,-45.5,-45.2,-45.1,-45.2,-45.8,-45.7,-45.6,-45.2,-45.2,-45.6,-45.0,-45.2,-44.8,-45.2,-45.5,-45.4,-45.1,-45.4,-45.6,-45.3,-44.9,-45.2,-44.9,-44.6,-44.1,-43.3,-42.5,-42.1,-42.1,-42.1,-42.3,-41.0,-40.3,-39.8,-39.5,-38.9,-38.5,-39.0,-40.3,-40.1,-39.7,-39.2,-39.4,-40.0,-38.9,-39.0,-39.3,-38.8,-38.3,-38.1,-37.0,-36.2,-36.0,-35.6,-35.4,-33.4,-32.3,-31.5,-30.7,-30.2,-29.3,-28.3,-26.7,-25.9,-24.6,-23.6,-23.4,-22.7,-22.2,-21.3,-19.8,-18.7,-17.4,-17.1,-16.1,-14.3,-14.3,-13.2,-12.0,-11.1,-10.3,-9.8,-8.5,-7.9,-7.8,-7.6,-6.9,-5.9,-5.2,-4.7,-5.2,-4.6,-4.2,-3.3,-3.2,-3.8,-3.5,-3.2,-2.7,-2.4,-2.5,-3.1,-2.8,-3.1,-2.7,-2.6,-2.5,-2.4,-3.0,-3.1,-2.1,-2.4,-2.8,-2.1,-2.1,-1.9,-1.4,-1.5,-1.5,-1.3,-1.5,-1.5,-1.1,-1.4,-1.4,-1.2,-1.3,-0.6,-0.3],"low":-46.3,"at":785},{"name":"Driggs Ave & N Henry St","zone":"greenpoint","cap":57,"curve":[0.0,-0.1,-0.1,-0.2,-0.2,-0.2,-0.2,-0.3,-0.5,-0.5,-0.5,-0.7,-0.7,-0.6,-0.7,-0.8,-0.8,-1.2,-1.5,-1.8,-2.3,-3.1,-3.5,-3.5,-3.7,-4.1,-4.9,-5.4,-6.0,-6.5,-7.5,-8.9,-9.7,-10.9,-11.7,-12.2,-12.4,-12.9,-14.6,-16.3,-18.1,-19.3,-20.8,-22.2,-22.6,-23.5,-24.1,-24.9,-25.3,-25.8,-26.4,-27.0,-27.3,-28.7,-29.1,-29.5,-30.2,-30.8,-31.5,-32.0,-32.5,-32.9,-33.3,-33.7,-34.6,-34.6,-34.7,-34.8,-34.9,-35.2,-35.1,-35.3,-35.1,-35.4,-35.7,-35.6,-36.0,-36.1,-36.2,-36.0,-36.4,-37.5,-37.8,-38.2,-38.1,-38.1,-38.2,-38.6,-38.9,-38.9,-38.8,-38.9,-39.3,-39.3,-39.8,-40.4,-40.7,-40.8,-40.9,-41.5,-41.6,-41.7,-42.1,-41.7,-42.3,-42.8,-42.3,-42.2,-42.2,-42.2,-41.9,-42.3,-42.2,-42.4,-42.7,-42.6,-42.7,-43.2,-43.1,-42.5,-42.6,-42.2,-41.8,-41.2,-40.7,-40.9,-40.7,-40.6,-40.3,-40.2,-40.2,-40.1,-40.2,-40.2,-40.1,-39.5,-38.9,-38.2,-38.1,-37.9,-38.0,-38.1,-37.9,-37.4,-37.2,-36.8,-36.9,-37.3,-37.7,-37.5,-37.8,-37.9,-37.2,-36.7,-36.6,-36.2,-35.7,-35.8,-35.9,-35.8,-36.3,-36.7,-36.8,-37.6,-37.6,-37.6,-38.4,-37.8,-38.1,-38.1,-37.9,-37.6,-37.6,-37.5,-37.3,-36.9,-36.3,-35.8,-35.1,-34.1,-33.8,-33.7,-32.9,-32.6,-32.2,-31.9,-31.6,-31.1,-30.7,-30.3,-29.8,-29.5,-29.2,-28.9,-28.5,-28.7,-28.3,-27.9,-27.9,-27.9,-27.6,-27.6,-27.0,-26.4,-25.7,-25.5,-25.3,-25.5,-24.8,-24.5,-23.9,-23.4,-22.6,-22.7,-22.2,-21.8,-21.1,-20.6,-20.2,-19.7,-19.7,-19.4,-19.0,-18.5,-18.3,-18.1,-17.8,-17.0],"low":-43.2,"at":885}],"fill":[{"name":"N 7 St & Driggs Ave","zone":"williamsburg_core","cap":53,"curve":[0.0,0.1,0.1,0.1,0.1,0.2,0.3,0.7,0.6,0.6,0.9,1.1,1.8,2.1,2.5,2.5,2.6,3.1,3.3,3.7,3.9,4.4,4.3,5.1,5.0,5.8,6.5,7.3,8.3,9.5,10.3,11.4,12.3,13.4,14.7,16.4,18.1,20.1,21.8,23.5,25.8,27.8,28.7,29.6,30.3,30.8,31.2,32.3,32.5,33.1,33.2,34.8,35.3,35.4,35.5,36.7,36.5,36.6,36.6,37.1,36.8,36.9,38.0,38.6,38.7,38.9,39.0,39.4,39.9,40.1,39.6,39.2,39.2,39.5,39.7,39.5,40.1,40.7,40.5,40.2,39.9,39.8,39.1,39.0,39.5,40.1,40.7,40.8,40.8,40.6,40.2,40.5,40.1,39.9,39.8,40.1,39.8,40.2,39.6,40.4,40.6,40.1,40.3,39.9,39.3,38.9,38.1,38.2,38.3,37.5,37.9,37.5,36.7,36.7,37.0,37.3,37.7,37.4,37.6,37.5,38.1,37.3,37.3,36.7,35.8,35.4,35.1,34.4,34.5,34.3,34.3,34.9,34.3,35.4,35.5,36.2,36.6,35.9,36.2,36.5,36.5,36.9,37.2,37.5,36.9,37.1,37.7,37.9,37.1,36.4,36.3,35.5,35.2,35.2,35.2,35.1,35.7,35.9,35.6,35.8,36.5,36.1,35.9,36.3,36.8,36.1,36.3,37.2,39.1,38.2,37.6,37.6,37.8,37.2,35.7,36.8,36.9,37.3,36.9,37.1,37.6,37.8,38.4,37.7,37.5,37.7,37.9,38.4,38.7,38.8,37.6,37.8,37.9,37.7,37.4,37.5,37.7,37.7,38.2,37.5,35.3,35.6,34.9,34.1,33.6,33.2,33.2,33.1,32.6,32.4,31.2,30.4,29.7,28.9,27.8,27.6,27.3,26.5,25.6,24.1,23.4,21.9,21.5,20.8,19.6,18.6,15.8,15.6],"high":40.8,"at":735},{"name":"Allen St & Hester St","zone":"manhattan_landing","cap":117,"curve":[-0.1,0.0,0.1,0.1,0.1,0.1,0.1,0.1,0.0,-0.2,-0.3,-0.4,-0.4,-0.4,-0.5,-0.6,-0.7,-0.9,-1.2,-1.4,-1.8,-2.1,-2.7,-3.2,-3.9,-4.6,-5.4,-5.5,-5.4,-5.6,-5.4,-6.1,-6.6,-7.2,-7.4,-7.6,-7.9,-8.4,-9.0,-9.5,-10.2,-10.6,-11.2,-12.6,-13.7,-15.5,-16.3,-16.0,-15.8,-15.5,-15.8,-16.5,-17.1,-18.1,-18.7,-18.9,-18.9,-19.3,-19.8,-19.6,-19.8,-19.7,-20.1,-19.9,-19.7,-19.7,-19.7,-20.5,-20.3,-20.1,-20.5,-20.1,-19.9,-19.6,-19.2,-19.4,-19.1,-19.2,-18.9,-18.9,-18.7,-18.2,-18.1,-17.4,-17.5,-17.3,-17.3,-17.0,-17.1,-16.2,-16.2,-16.1,-16.2,-16.7,-17.2,-16.4,-16.2,-16.5,-16.7,-16.8,-16.5,-16.3,-16.4,-16.1,-15.8,-15.9,-15.9,-15.7,-15.8,-14.8,-15.1,-15.7,-15.7,-14.9,-14.3,-14.4,-14.9,-14.5,-14.4,-14.1,-13.9,-13.2,-13.1,-13.1,-13.1,-13.1,-12.5,-12.6,-12.1,-12.0,-11.7,-11.5,-10.6,-10.8,-10.7,-9.7,-10.3,-9.4,-9.3,-9.1,-7.7,-7.5,-7.4,-6.6,-6.5,-5.9,-4.8,-4.9,-4.3,-3.0,-2.5,-1.0,0.5,1.9,4.5,5.9,7.9,8.9,9.6,11.4,13.1,14.3,15.6,17.2,17.1,18.5,19.7,20.1,21.1,21.7,22.6,23.5,23.5,24.3,24.8,25.6,26.0,25.7,27.2,26.7,27.2,26.8,27.1,28.1,28.3,28.2,28.3,28.8,28.8,29.4,29.7,29.4,29.4,29.3,29.8,30.1,30.1,29.9,29.9,29.1,29.2,29.3,29.7,28.9,29.1,29.6,29.7,29.5,30.0,30.0,29.6,29.5,29.3,29.2,29.3,29.2,29.4,29.3,29.2,29.1,28.7,28.7,28.3,28.4,27.6,26.6,26.7,26.8],"high":30.1,"at":1275},{"name":"E 1 St & 1 Ave","zone":"manhattan_landing","cap":75,"curve":[0.0,0.0,-0.1,-0.1,0.0,0.0,-0.1,-0.2,-0.3,-0.3,-0.3,-0.4,-0.5,-0.5,-0.3,0.3,0.9,1.3,0.9,0.3,0.2,-0.2,-0.4,0.2,-0.0,0.1,0.1,-0.2,0.2,0.2,0.3,-0.4,-0.9,-1.1,-1.5,-1.7,-2.1,-2.2,-2.3,-2.2,-3.1,-4.8,-5.4,-4.3,-5.2,-6.0,-6.9,-7.5,-7.9,-8.3,-9.3,-9.5,-9.9,-10.2,-10.1,-10.5,-11.6,-12.4,-12.4,-11.9,-12.0,-11.6,-11.9,-12.4,-12.9,-13.5,-13.5,-13.5,-13.5,-13.3,-13.8,-13.9,-13.7,-14.3,-14.2,-14.5,-15.3,-15.5,-15.6,-15.9,-16.2,-16.2,-15.5,-14.8,-15.1,-14.7,-14.9,-14.5,-14.1,-14.6,-14.3,-14.0,-14.1,-14.4,-14.7,-14.4,-14.6,-14.3,-14.5,-14.7,-15.1,-15.4,-14.8,-14.4,-14.4,-13.9,-14.1,-14.4,-14.6,-14.4,-15.1,-14.1,-13.7,-13.7,-13.3,-13.6,-13.1,-13.3,-13.7,-14.5,-13.7,-13.5,-13.8,-14.3,-13.4,-13.1,-12.6,-12.8,-12.7,-12.5,-12.4,-12.1,-11.9,-12.0,-11.6,-11.6,-11.1,-11.4,-10.9,-11.2,-12.0,-11.1,-10.3,-9.9,-8.9,-7.9,-7.9,-6.6,-6.3,-4.9,-2.7,-0.7,0.4,2.1,3.7,4.3,5.2,6.1,6.2,7.8,9.2,9.8,9.8,10.7,11.2,12.5,13.4,14.6,15.7,17.1,19.1,19.6,20.6,21.4,21.2,21.7,21.6,21.9,21.1,21.8,22.0,22.6,22.4,23.3,24.1,24.4,24.8,25.9,26.6,27.1,27.9,28.4,28.4,28.6,27.9,27.9,27.8,28.1,28.2,28.4,28.7,28.6,28.2,28.1,28.5,28.5,28.3,28.6,29.2,29.3,29.4,28.9,28.4,28.4,28.5,28.3,27.9,27.7,27.4,27.2,27.5,27.4,27.3,27.1,26.3,25.9,25.8,26.0],"high":29.4,"at":1350},{"name":"Driggs Ave & N 9 St","zone":"williamsburg_core","cap":51,"curve":[-0.1,0.0,-0.1,-0.1,-0.1,-0.1,-0.1,-0.1,0.0,0.3,0.7,1.2,2.7,3.2,3.4,3.6,3.6,3.8,4.1,4.0,4.0,4.4,4.9,5.7,5.8,6.0,7.1,7.7,8.2,8.8,9.1,8.9,9.1,9.1,10.0,10.5,10.9,10.4,10.2,10.5,12.6,14.2,14.7,15.9,16.8,16.7,17.1,17.3,17.1,17.6,17.8,18.8,18.4,19.0,20.1,21.1,21.4,21.3,21.3,21.1,21.6,21.9,22.3,22.9,22.9,23.4,23.4,22.8,22.2,22.3,21.7,22.2,22.2,21.9,22.2,22.4,22.4,22.5,22.9,22.9,23.2,23.1,23.4,24.4,25.2,25.5,25.6,25.8,25.9,26.2,25.7,25.5,25.1,24.9,24.8,25.2,24.9,24.1,24.1,24.3,24.5,24.5,24.2,24.1,23.9,23.6,23.8,24.0,24.0,23.8,23.9,23.6,24.1,24.1,24.7,25.2,25.1,25.5,25.7,26.2,26.2,26.1,25.9,25.8,25.4,24.9,25.2,24.7,24.8,24.9,25.3,25.2,25.5,25.8,26.4,26.7,26.6,26.3,26.2,25.7,25.8,26.5,26.3,26.4,26.0,26.6,26.3,26.3,25.9,26.4,26.8,25.8,25.8,25.1,24.9,25.1,25.0,25.1,25.4,25.8,26.2,25.3,26.3,26.7,27.0,27.3,27.1,27.6,27.4,27.7,27.6,27.5,27.3,27.2,27.9,28.7,28.9,29.1,29.4,29.3,29.1,28.7,28.6,29.1,28.4,28.6,29.2,29.3,28.9,28.7,29.1,29.0,29.4,29.2,28.9,29.0,29.2,29.4,29.2,28.7,28.9,28.7,28.7,28.6,28.4,28.5,28.7,28.7,28.5,28.6,27.9,27.6,26.7,26.8,26.4,26.5,26.3,26.0,25.4,25.6,25.6,24.8,24.0,23.8,23.2,22.7,22.5,21.3],"high":29.4,"at":1190},{"name":"N 12 St & Bedford Ave","zone":"greenpoint","cap":47,"curve":[0.1,0.1,0.2,0.5,0.6,0.7,1.1,1.3,1.4,1.8,2.2,2.6,2.6,2.7,2.9,3.1,3.1,3.1,3.2,3.4,3.8,4.5,5.4,6.4,6.9,6.7,7.0,7.5,7.7,8.5,9.7,10.4,11.3,11.8,12.5,12.7,12.6,12.3,12.2,12.4,12.6,13.2,13.3,13.3,13.5,13.4,13.9,14.3,14.6,14.4,13.9,14.2,14.0,13.6,13.7,13.8,13.7,14.2,14.3,15.3,15.5,15.1,15.0,14.7,15.2,15.6,15.6,16.2,16.4,16.4,16.5,17.4,17.3,16.6,17.3,17.6,18.3,18.4,18.6,18.8,19.3,19.3,19.3,18.9,19.5,18.8,18.8,18.2,18.2,18.5,18.4,18.6,18.7,18.7,19.5,19.5,19.4,19.4,18.9,18.3,18.1,18.7,18.2,18.3,18.3,18.7,18.6,20.0,20.3,19.9,19.6,19.6,19.6,19.9,20.1,20.5,20.5,20.9,21.0,21.2,21.1,20.4,20.7,20.5,20.6,20.6,20.8,21.2,21.6,21.7,22.8,23.4,23.3,23.1,22.7,22.6,22.9,23.4,23.2,23.6,23.8,23.4,23.2,23.6,22.1,21.9,21.3,22.1,21.8,21.7,21.7,22.3,22.5,23.1,23.0,23.4,24.5,24.4,24.3,24.7,25.1,25.8,25.6,25.3,25.6,25.7,26.2,26.4,26.1,26.1,25.4,25.7,25.9,26.3,26.6,26.9,26.6,27.1,26.4,26.7,27.0,26.9,26.9,26.5,26.9,27.1,26.8,26.8,27.1,26.5,25.7,25.5,26.2,26.1,25.7,26.1,26.6,26.5,26.5,26.6,26.5,26.6,26.2,25.8,25.5,25.5,24.9,24.5,24.5,24.6,24.3,23.9,24.2,23.9,23.2,23.2,22.6,22.1,21.6,21.0,20.9,20.2,19.4,18.6,18.3,17.7,17.7,17.2],"high":27.1,"at":1185},{"name":"N 6 St & Bedford Ave","zone":"williamsburg_core","cap":28,"curve":[0.3,0.3,0.4,0.5,0.6,0.6,0.9,1.0,0.9,1.2,1.4,1.6,2.1,3.0,3.8,4.8,5.1,5.6,5.8,6.3,6.8,7.6,8.1,8.8,8.8,10.1,10.5,11.7,12.5,13.3,13.8,14.6,14.8,15.6,15.9,17.1,17.4,17.6,17.7,17.7,17.7,18.4,18.9,19.4,19.2,19.1,19.3,19.4,19.8,19.5,19.7,19.3,20.2,19.9,19.2,19.4,20.0,20.3,20.3,20.3,20.8,21.0,21.2,21.3,20.4,20.9,21.1,21.5,21.7,21.1,21.5,21.1,21.2,22.1,22.5,22.6,21.9,21.6,21.8,22.2,21.8,21.6,21.4,21.6,21.9,22.2,22.3,22.9,22.8,22.8,22.8,22.7,22.2,21.6,21.8,22.1,21.7,21.6,22.0,21.7,20.6,21.5,21.5,20.6,20.5,19.8,19.8,19.8,20.5,19.7,20.1,20.1,20.5,19.8,19.8,19.6,19.5,19.1,19.0,17.6,17.8,17.5,18.3,18.4,18.0,18.1,18.2,18.1,17.9,18.2,18.9,17.9,17.8,18.3,17.3,18.1,18.2,18.6,18.6,19.4,20.1,19.9,19.8,21.2,21.1,21.1,20.8,21.0,21.2,21.2,21.3,20.3,21.5,21.8,21.7,21.8,21.6,22.3,22.7,22.9,23.2,23.3,24.1,24.8,24.8,24.4,24.4,24.2,24.2,24.6,24.6,24.5,23.7,23.9,24.2,24.5,24.7,25.4,24.6,23.9,24.9,24.9,25.1,24.8,25.4,24.9,25.8,25.5,25.9,26.1,25.6,25.5,25.2,24.9,25.1,24.7,24.7,25.1,24.8,24.8,24.5,23.9,23.7,23.3,23.2,22.9,22.9,22.6,22.7,22.5,22.1,21.9,21.5,21.5,21.5,20.7,20.6,20.4,19.5,19.5,19.7,18.7,17.6,17.5,16.8,16.3,15.7,15.6],"high":26.1,"at":1245}]};
+const NS = "http://www.w3.org/2000/svg";
+const DOWS = [0,2,4,5,6], DNAME = {0:"Mon",2:"Wed",4:"Fri",5:"Sat",6:"Sun"};
+const SER  = ["--s1","--s2","--s3","--s4","--s5"];
+const tip = document.getElementById("tip");
+const hhmm = m => `${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`;
+
+function showTip(e, html){
+  tip.textContent = html;
+  tip.style.opacity = 1;
+  const r = tip.getBoundingClientRect();
+  let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + r.width  > innerWidth  - 8) x = e.clientX - r.width  - 14;
+  if (y + r.height > innerHeight - 8) y = e.clientY - r.height - 14;
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+const hideTip = () => tip.style.opacity = 0;
+
+/* ---------------- Chart A : hourly profile ---------------- */
+(function(){
+  const W=880,H=330,mL=48,mR=58,mT=14,mB=36;   // mR fits end labels
+  const iw=W-mL-mR, ih=H-mT-mB;
+  const max=3600;
+  const X=h=>mL+iw*h/23, Y=v=>mT+ih*(1-v/max);
+
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Rides per day by hour for five weekdays">`;
+  for(let g=0; g<=3600; g+=1200){
+    s+=`<line x1="${mL}" x2="${W-mR}" y1="${Y(g)}" y2="${Y(g)}" style="stroke:var(--line)" stroke-width="1"/>`;
+    s+=`<text x="${mL-9}" y="${Y(g)+4}" text-anchor="end" style="fill:var(--muted)" font-size="11"
+         font-family="IBM Plex Mono, monospace">${g/1000?g/1000+"k":0}</text>`;
+  }
+  for(let h=0;h<24;h+=3)
+    s+=`<text x="${X(h)}" y="${H-12}" text-anchor="middle" style="fill:var(--muted)" font-size="11"
+         font-family="IBM Plex Mono, monospace">${String(h).padStart(2,"0")}</text>`;
+
+  // 18:00 peak marker \u2014 the finding this chart exists to make.
+  s+=`<line x1="${X(18)}" x2="${X(18)}" y1="${mT}" y2="${H-mB}" style="stroke:var(--ink-2)"
+       stroke-width="1" stroke-dasharray="3 3" opacity=".55"/>`;
+  s+=`<text x="${X(18)-7}" y="${mT+13}" text-anchor="end" style="fill:var(--ink-2)" font-size="11"
+       font-weight="600" font-family="IBM Plex Mono, monospace">18:00 peak</text>`;
+  // the window the sampling grid over-weights
+  s+=`<rect x="${X(16.5)}" y="${mT}" width="${X(17.5)-X(16.5)}" height="${ih}"
+       style="fill:var(--ink)" opacity=".05"/>`;
+  s+=`<text x="${X(17)}" y="${H-mB-7}" text-anchor="middle" style="fill:var(--muted)" font-size="10"
+       font-family="IBM Plex Mono, monospace">grid clusters here</text>`;
+
+  DOWS.forEach((d,i)=>{
+    const v=D.hourly[String(d)];
+    const path=v.map((y,h)=>`${h?"L":"M"}${X(h).toFixed(1)},${Y(y).toFixed(1)}`).join("");
+    s+=`<path d="${path}" fill="none" style="stroke:var(${SER[i]})" stroke-width="2"
+         stroke-linejoin="round" stroke-linecap="round"/>`;
+  });
+
+  // Direct end labels. Three light-mode series sit under 3:1 on this surface, so
+  // the palette's relief rule makes these mandatory, not decorative - identity can
+  // never rest on hue alone. De-collided so near-equal endpoints stay readable.
+  const ends = DOWS.map((d,i)=>({t:DNAME[d], c:SER[i], y:Y(D.hourly[String(d)][23])}))
+                   .sort((a,b)=>a.y-b.y);
+  for(let i=1;i<ends.length;i++)
+    if(ends[i].y - ends[i-1].y < 13) ends[i].y = ends[i-1].y + 13;
+  ends.forEach(e=>{
+    s+=`<text x="${X(23)+8}" y="${e.y+4}" style="fill:var(${e.c})" font-size="12" font-weight="600"
+         font-family="IBM Plex Mono, monospace">${e.t}</text>`;
+  });
+  s+=`<line class="cross" x1="0" x2="0" y1="${mT}" y2="${H-mB}" style="stroke:var(--ink)"
+       stroke-width="1" opacity="0"/>`;
+  s+=`<rect x="${mL}" y="${mT}" width="${iw}" height="${ih}" fill="transparent" id="hitA"/>`;
+  s+=`</svg>`;
+  const host=document.getElementById("chartA"); host.innerHTML=s;
+
+  const svg=host.querySelector("svg"), cross=host.querySelector(".cross");
+  host.querySelector("#hitA").addEventListener("pointermove",e=>{
+    const r=svg.getBoundingClientRect();
+    const h=Math.round(((e.clientX-r.left)/r.width*W-mL)/iw*23);
+    if(h<0||h>23) return;
+    cross.setAttribute("x1",X(h)); cross.setAttribute("x2",X(h));
+    cross.setAttribute("opacity",".35");
+    showTip(e, `${String(h).padStart(2,"0")}:00\n` +
+      DOWS.map((d,i)=>`${DNAME[d]}  ${String(Math.round(D.hourly[String(d)][h])).padStart(5)}`).join("\n"));
+  });
+  host.querySelector("#hitA").addEventListener("pointerleave",()=>{
+    cross.setAttribute("opacity","0"); hideTip();
+  });
+
+  document.getElementById("legA").innerHTML = DOWS.map((d,i)=>
+    `<span><i class="sw" style="background:var(${SER[i]})"></i>${DNAME[d]}</span>`).join("");
+})();
+
+/* ---------------- Chart C : diverging capacity share ---------------- */
+(function(){
+  const rows = [
+    ...D.drain.map(x=>({...x, pct: x.low/x.cap*100,  val:x.low })),
+    ...D.fill .map(x=>({...x, pct: x.high/x.cap*100, val:x.high})),
+  ].sort((a,b)=>a.pct-b.pct);
+
+  const W=880, rowH=27, mT=26, H=rows.length*rowH+mT+16;
+  const gut=232, pR=14, pw=W-gut-pR, cx=gut+pw/2;
+  const X=p=>cx+pw/2*(p/100);
+
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Accumulated pressure as share of station capacity">`;
+  [-100,-50,0,50,100].forEach(t=>{
+    s+=`<line x1="${X(t)}" x2="${X(t)}" y1="${mT-8}" y2="${H-14}"
+         style="stroke:var(${t?"--line":"--ink-2"})" stroke-width="1" ${t?"":'opacity=".5"'}/>`;
+    s+=`<text x="${X(t)}" y="${mT-14}" text-anchor="middle" style="fill:var(--muted)" font-size="10.5"
+         font-family="IBM Plex Mono, monospace">${Math.abs(t)}%</text>`;
+  });
+  s+=`<text x="${X(-50)}" y="${H-2}" text-anchor="middle" style="fill:var(--red)" font-size="10.5"
+       font-weight="600" font-family="IBM Plex Mono, monospace">EMPTIES</text>`;
+  s+=`<text x="${X(50)}" y="${H-2}" text-anchor="middle" style="fill:var(--blue)" font-size="10.5"
+       font-weight="600" font-family="IBM Plex Mono, monospace">FILLS UP</text>`;
+
+  rows.forEach((r,i)=>{
+    const y=mT+i*rowH, neg=r.pct<0, c=neg?"--red":"--blue";
+    const x0=Math.min(X(0),X(r.pct)), w=Math.abs(X(r.pct)-X(0));
+    s+=`<text x="0" y="${y+15}" style="fill:var(--ink)" font-size="12.5" font-weight="500">${r.name}</text>`;
+    s+=`<rect class="bar" data-i="${i}" x="${x0}" y="${y+4}" width="${Math.max(w,1.5)}" height="15"
+         rx="2" style="fill:var(${c})"/>`;
+    const lx = neg ? x0-7 : x0+w+7;
+    s+=`<text x="${lx}" y="${y+15.5}" text-anchor="${neg?"end":"start"}" style="fill:var(--ink-2)"
+         font-size="11.5" font-family="IBM Plex Mono, monospace">${Math.round(Math.abs(r.pct))}%</text>`;
+  });
+  s+=`</svg>`;
+  const host=document.getElementById("chartC"); host.innerHTML=s;
+  host.querySelectorAll(".bar").forEach(b=>{
+    const r=rows[+b.dataset.i];
+    b.addEventListener("pointermove",e=>showTip(e,
+      `${r.name}\n${r.val>0?"+":""}${r.val.toFixed(1)} bikes net at ${hhmm(r.at)}\n`+
+      `capacity ${r.cap} \u00b7 ${Math.round(Math.abs(r.pct))}% of it`));
+    b.addEventListener("pointerleave",hideTip);
+  });
+
+  // Appendix table, same rows.
+  document.querySelector("#tbl tbody").innerHTML = rows.map(r=>`<tr>
+    <td>${r.name}</td><td><span class="pill">${r.zone.replace(/_/g," ")}</span></td>
+    <td class="n">${r.val>0?"+":""}${r.val.toFixed(1)}</td>
+    <td class="n">${hhmm(r.at)}</td><td class="n">${r.cap}</td>
+    <td class="n">${Math.round(Math.abs(r.pct))}%</td></tr>`).join("");
+})();
+
+/* ---------------- Small multiples ---------------- */
+(function(){
+  const picks=[...D.drain.slice(0,3), ...D.fill.slice(0,3)];
+  const all=picks.flatMap(p=>p.curve);
+  const lo=Math.min(...all), hi=Math.max(...all);
+  const W=240,H=66;
+  document.getElementById("minis").innerHTML = picks.map(p=>{
+    const isDrain = (p.low !== undefined);   // drain entries carry .low, fills carry .high
+    const c = isDrain ? "--red" : "--blue";
+    const n=p.curve.length;
+    const X=i=>W*i/(n-1), Y=v=>4+(H-8)*(1-(v-lo)/(hi-lo));
+    const line=p.curve.map((v,i)=>`${i?"L":"M"}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join("");
+    const area=`${line}L${W},${Y(0)}L0,${Y(0)}Z`;
+    const peak=isDrain?p.low:p.high, at=p.at;
+    const px=X(p.curve.indexOf(peak)), py=Y(peak);
+    return `<div class="mini">
+      <div class="nm">${p.name}</div>
+      <div class="zn">${p.zone.replace(/_/g," ")} \u00b7 ${p.cap} docks</div>
+      <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:${H}px;margin-top:8px"
+           role="img" aria-label="${p.name}: accumulated pressure curve">
+        <path d="${area}" style="fill:var(${c})" opacity=".13"/>
+        <line x1="0" x2="${W}" y1="${Y(0)}" y2="${Y(0)}" style="stroke:var(--ink-2)" stroke-width="1" opacity=".45"/>
+        <path d="${line}" fill="none" style="stroke:var(${c})" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="${px}" cy="${py}" r="3.5" style="fill:var(${c});stroke:var(--surface)" stroke-width="2"/>
+      </svg>
+      <div class="fig" style="color:var(${c})">${peak>0?"+":""}${peak.toFixed(1)} @ ${hhmm(at)}
+        <span style="color:var(--muted)">\u00b7 ${Math.round(Math.abs(peak)/p.cap*100)}% of cap</span></div>
+    </div>`;
+  }).join("");
+})();
+</script>

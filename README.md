@@ -156,9 +156,20 @@ grid needs roughly **4 weeks** before slots have enough observations to be
 meaningful — until then the dashboard says so explicitly rather than showing
 confident numbers off three samples.
 
-**Trip archive** (`analysis/fetch_trips.sh 202607`) needs no waiting — July 2026
-alone has 1,043,979 rides touching the tracked stations, 20.9% of all NYC Citi
-Bike traffic that month.
+**Trip archive analysis is done** — 4,248,619 rides across Aug 2025 and May–Jul
+2026, ~21% of all NYC Citi Bike traffic. Findings are written up in
+`docs/report.html` (also served at `/report.html` on Pages). Headlines:
+
+- The weekday peak is **18:00**, not the 16:30–17:30 window the time grid
+  over-samples.
+- E-bikes are **72–77%** of all rides — the default, not the scarce upgrade.
+- Accumulated daily flow, not per-window net flow, is what empties a rack:
+  five of the six deepest drains are in the Lower East Side, three of the six
+  deepest pile-ups are in Williamsburg proper.
+- **N 6 St & Bedford Ave** absorbs a net 26 bikes by 20:45 into 28 docks — 93%
+  of its capacity. Worst dock-hunt station in the set.
+
+Rebuild with `python3 analysis/analyze_trips.py`.
 
 Not yet built: the trip-archive *analysis* itself, weather-effect analysis (needs
 enough rainy days to contrast against dry ones), and predictive modelling.
