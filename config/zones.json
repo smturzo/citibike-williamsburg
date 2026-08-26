@@ -1,0 +1,9 @@
+{
+  "_comment": "Bounding boxes defining the tracked area. Edit and re-run collect/resolve_stations.py to change the station set.",
+  "zones": {
+    "williamsburg_core": {"lat_min": 40.7000, "lat_max": 40.7190, "lon_min": -73.9720, "lon_max": -73.9420},
+    "greenpoint":        {"lat_min": 40.7190, "lat_max": 40.7400, "lon_min": -73.9640, "lon_max": -73.9350},
+    "east_williamsburg": {"lat_min": 40.7000, "lat_max": 40.7200, "lon_min": -73.9420, "lon_max": -73.9130},
+    "manhattan_landing": {"lat_min": 40.7100, "lat_max": 40.7250, "lon_min": -73.9950, "lon_max": -73.9750}
+  }
+}

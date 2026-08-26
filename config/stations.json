@@ -1,0 +1,1761 @@
+{
+ "generated_at": 1787764589,
+ "count": 195,
+ "stations": [
+  {
+   "station_id": "d52d4171-fd60-4a28-b7e2-89f3693e0591",
+   "name": "53 St & Flushing Ave",
+   "short_name": "5257.01",
+   "lat": 40.71435,
+   "lon": -73.91405,
+   "capacity": 19,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "29b21bd8-2459-4727-b1f0-d73592db3321",
+   "name": "Beaver St & Fayette St",
+   "short_name": "4840.06",
+   "lat": 40.70099,
+   "lon": -73.93921,
+   "capacity": 30,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "0575e356-72f4-4251-8e15-574cf60bd190",
+   "name": "Bushwick Ave & Forrest St",
+   "short_name": "4914.03",
+   "lat": 40.70076,
+   "lon": -73.93641,
+   "capacity": 20,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "56e18295-f760-4bf3-8aa3-5a1e4ebf606f",
+   "name": "Bushwick Ave & McKibbin St",
+   "short_name": "5027.02",
+   "lat": 40.705517,
+   "lon": -73.93936,
+   "capacity": 21,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "66dcf394-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Bushwick Ave & Powers St",
+   "short_name": "5250.05",
+   "lat": 40.712477,
+   "lon": -73.941,
+   "capacity": 32,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "e35c42c6-8b73-4528-b08d-c94b75624b40",
+   "name": "Bushwick Ave & Stagg St",
+   "short_name": "5140.06",
+   "lat": 40.709897,
+   "lon": -73.94008,
+   "capacity": 21,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "3a89411a-0bc6-4ba3-bc56-fab950c8eba1",
+   "name": "Central Ave & Flushing Ave",
+   "short_name": "4947.04",
+   "lat": 40.702831,
+   "lon": -73.9333,
+   "capacity": 21,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "75352ab4-8a31-4926-8b59-048a9e506452",
+   "name": "Central Ave & Melrose St",
+   "short_name": "4832.07",
+   "lat": 40.70112,
+   "lon": -73.93039,
+   "capacity": 17,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "d11b9869-8964-4b79-aafc-4b60ad1b44c4",
+   "name": "Central Ave & Starr St",
+   "short_name": "4792.03",
+   "lat": 40.700003,
+   "lon": -73.92834,
+   "capacity": 23,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "84a7baff-415b-4ab9-a859-74c2801483ce",
+   "name": "Devoe St & Morgan Ave",
+   "short_name": "5282.02",
+   "lat": 40.713811,
+   "lon": -73.93515,
+   "capacity": 19,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "2c2cdc55-52a3-4140-b4d3-8409a98f130f",
+   "name": "Evergreen Ave & Noll St",
+   "short_name": "4873.08",
+   "lat": 40.70106,
+   "lon": -73.93318,
+   "capacity": 25,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "d89dc10f-9be3-45a5-9c3c-06c04c963436",
+   "name": "Flushing Ave & Woodward Ave",
+   "short_name": "5225.02",
+   "lat": 40.71246,
+   "lon": -73.91873,
+   "capacity": 21,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "a958a8af-a0cc-4bca-9114-93c74ce3c693",
+   "name": "Frost St & Debevoise Ave",
+   "short_name": "5433.04",
+   "lat": 40.71882,
+   "lon": -73.93948,
+   "capacity": 22,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "f3b359e2-7983-4aaf-b6b0-e3b7d30816a4",
+   "name": "George St & Wilson Ave",
+   "short_name": "4906.07",
+   "lat": 40.702997,
+   "lon": -73.92997,
+   "capacity": 19,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "b62bcd96-c2db-447c-bdd5-d3c18f174858",
+   "name": "Grand Ave & 55 St",
+   "short_name": "5369.01",
+   "lat": 40.71888,
+   "lon": -73.91427,
+   "capacity": 19,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "cac843c2-8b21-47bb-a3b9-712f95d7f7aa",
+   "name": "Harrison Pl & Porter Ave",
+   "short_name": "5090.06",
+   "lat": 40.70686,
+   "lon": -73.92851,
+   "capacity": 20,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "c4e9905f-457b-4be0-a878-2aa53fa0b09b",
+   "name": "Hart St & Wyckoff Ave",
+   "short_name": "4971.01",
+   "lat": 40.704876,
+   "lon": -73.919911,
+   "capacity": 24,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "d5d589e6-457f-4cd4-bf78-59165dce28b2",
+   "name": "Irving Ave & DeKalb Ave",
+   "short_name": "4898.02",
+   "lat": 40.7027,
+   "lon": -73.92095,
+   "capacity": 27,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "45e8c326-b12d-4be6-b040-bb6de9986d25",
+   "name": "Irving Ave & Harman St",
+   "short_name": "4856.05",
+   "lat": 40.70108,
+   "lon": -73.9179,
+   "capacity": 21,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "2868db5b-df51-4c36-8515-ef77a5b092c2",
+   "name": "Irving Ave & Jefferson St",
+   "short_name": "5051.02",
+   "lat": 40.70538,
+   "lon": -73.92535,
+   "capacity": 19,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "5ffde991-1125-443e-bc97-6827b2b9c97b",
+   "name": "Jefferson St & Cypress Ave",
+   "short_name": "5082.08",
+   "lat": 40.70907,
+   "lon": -73.92157,
+   "capacity": 25,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "7af717b9-99ce-4cce-94b4-b445a40537a1",
+   "name": "Knickerbocker Ave & George St",
+   "short_name": "4979.07",
+   "lat": 40.704425,
+   "lon": -73.92836,
+   "capacity": 23,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "29223935-a682-411c-9f25-577bbb9804fc",
+   "name": "Knickerbocker Ave & Thames St",
+   "short_name": "5018.06",
+   "lat": 40.70539,
+   "lon": -73.92976,
+   "capacity": 20,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "b03adb87-2bd9-43a5-a822-7d06a9ee2d81",
+   "name": "McKibbin St & Bogart St",
+   "short_name": "5059.02",
+   "lat": 40.706237,
+   "lon": -73.933871,
+   "capacity": 30,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "db02e1ea-acc1-4f45-8e3c-d37468b0b5a6",
+   "name": "Menahan St & Wyckoff Ave",
+   "short_name": "4890.11",
+   "lat": 40.70113,
+   "lon": -73.91422,
+   "capacity": 20,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "af626e61-9f83-4602-a9b1-038b1c1430e6",
+   "name": "Metropolitan Ave & Flushing Ave",
+   "short_name": "5225.04",
+   "lat": 40.71334,
+   "lon": -73.91572,
+   "capacity": 19,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "201edb67-d071-4b67-bafd-131e5c273e9f",
+   "name": "Metropolitan Ave & Stewart Ave",
+   "short_name": "5273.01",
+   "lat": 40.71401,
+   "lon": -73.92793,
+   "capacity": 20,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "faf021ad-9de5-44bd-b7f5-48127e8d5fea",
+   "name": "Metropolitan Ave & Vandervoort Ave",
+   "short_name": "5241.02",
+   "lat": 40.71429,
+   "lon": -73.93323,
+   "capacity": 24,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "66dce8db-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Montrose Ave & Bushwick Ave",
+   "short_name": "5068.02",
+   "lat": 40.707678,
+   "lon": -73.940162,
+   "capacity": 42,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "467e1de6-73a6-480f-9e83-fd1b03b71047",
+   "name": "Morgan Ave & Maspeth Ave",
+   "short_name": "5354.01",
+   "lat": 40.716657,
+   "lon": -73.93637,
+   "capacity": 25,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "be8e6f1c-e8b5-40bd-896d-423052ba3bbc",
+   "name": "Onderdonk Ave & Dekalb Ave",
+   "short_name": "5115.01",
+   "lat": 40.70863,
+   "lon": -73.91497,
+   "capacity": 17,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "bf093f72-1d8d-44ae-91b5-e36958a27976",
+   "name": "Page Pl & Grand Ave",
+   "short_name": "5409.02",
+   "lat": 40.71798,
+   "lon": -73.91818,
+   "capacity": 21,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "fc5ee04d-710b-45ba-aae0-303b8e95ea89",
+   "name": "Powers St & Olive St",
+   "short_name": "5210.01",
+   "lat": 40.71323,
+   "lon": -73.93894,
+   "capacity": 19,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "2104278402820534724",
+   "name": "Seigel St & Humboldt St",
+   "short_name": "4956.09",
+   "lat": 40.704613,
+   "lon": -73.940865,
+   "capacity": 42,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "f3c68cfb-52fd-48c8-b6e5-85c179fee0b3",
+   "name": "Sharon St & Olive St",
+   "short_name": "5323.06",
+   "lat": 40.715342,
+   "lon": -73.938651,
+   "capacity": 24,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "ab6aadd8-fa45-43aa-abea-c8e01ec5a0c8",
+   "name": "Stagg St & Morgan Ave",
+   "short_name": "5170.01",
+   "lat": 40.710681,
+   "lon": -73.93372,
+   "capacity": 23,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "cd4b8e12-b2c7-479b-900d-59cf7d8c4276",
+   "name": "Stewart Ave & Johnson Ave",
+   "short_name": "5123.07",
+   "lat": 40.70869,
+   "lon": -73.92587,
+   "capacity": 17,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "145bbc0d-8976-45ae-9565-158ba564d3d1",
+   "name": "Suydam St & Knickerbocker Ave",
+   "short_name": "4939.07",
+   "lat": 40.702013,
+   "lon": -73.923769,
+   "capacity": 27,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "498d7e8e-5164-4f26-9ce6-399947d73b1a",
+   "name": "Suydam St & St Nicholas Ave",
+   "short_name": "5043.06",
+   "lat": 40.70636,
+   "lon": -73.91945,
+   "capacity": 17,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "bfbd1f09-afd2-49d2-8674-3a07b3c929a4",
+   "name": "Waterbury St & Stagg St",
+   "short_name": "5099.02",
+   "lat": 40.71019,
+   "lon": -73.93734,
+   "capacity": 23,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "de6f4206-3aa9-4cb9-aae0-8547d2cd6854",
+   "name": "White St & Johnson Ave",
+   "short_name": "5099.03",
+   "lat": 40.707174,
+   "lon": -73.93581,
+   "capacity": 23,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "9a52fbc1-d87a-4a65-941d-12fd55dbcdde",
+   "name": "White St & Moore St",
+   "short_name": "4987.06",
+   "lat": 40.704508,
+   "lon": -73.9351,
+   "capacity": 21,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "ee1ba75f-baf5-4852-929c-8b7ad310f55a",
+   "name": "Willoughby Ave & Onderdonk Ave",
+   "short_name": "5115.05",
+   "lat": 40.7098,
+   "lon": -73.91727,
+   "capacity": 27,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "e612122d-e0fd-4ebf-8d51-0f48f9d1b580",
+   "name": "Willoughby Ave & Wyckoff Ave",
+   "short_name": "5010.02",
+   "lat": 40.705614,
+   "lon": -73.92153,
+   "capacity": 23,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "f401cd5f-cb41-41f8-a857-4a4dfe778f94",
+   "name": "Wilson Ave & Troutman St",
+   "short_name": "4864.09",
+   "lat": 40.70166,
+   "lon": -73.92754,
+   "capacity": 26,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "3c5a8531-4eec-4695-b4f8-8a1158890e78",
+   "name": "Withers St & Kingsland Ave",
+   "short_name": "5362.08",
+   "lat": 40.71773,
+   "lon": -73.94051,
+   "capacity": 18,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "9b721468-3b28-429d-9e13-580cdf00a6a4",
+   "name": "Wyckoff Ave & Jefferson St",
+   "short_name": "5051.01",
+   "lat": 40.707165,
+   "lon": -73.923711,
+   "capacity": 27,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "f6cf3ecc-b3ad-4291-8c24-277f28f64ba1",
+   "name": "Wyckoff Ave & Stanhope St",
+   "short_name": "4931.05",
+   "lat": 40.703545,
+   "lon": -73.917775,
+   "capacity": 22,
+   "zone": "east_williamsburg"
+  },
+  {
+   "station_id": "66dd1d0f-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Banker St & Meserole Ave",
+   "short_name": "5633.04",
+   "lat": 40.72606,
+   "lon": -73.95621,
+   "capacity": 31,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dea4bf-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Bayard St & Leonard St",
+   "short_name": "5442.05",
+   "lat": 40.719156,
+   "lon": -73.948854,
+   "capacity": 43,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd1bf3-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Bedford Ave & Nassau Ave",
+   "short_name": "5550.05",
+   "lat": 40.723117,
+   "lon": -73.952123,
+   "capacity": 49,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd01c5-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Berry St & N 8 St",
+   "short_name": "5379.09",
+   "lat": 40.719009,
+   "lon": -73.958525,
+   "capacity": 27,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1899178885660253096",
+   "name": "Borden Ave & 25 St",
+   "short_name": "6086.02",
+   "lat": 40.739614,
+   "lon": -73.945151,
+   "capacity": 27,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "6d766daf-9298-4059-a329-1818582d495f",
+   "name": "Borden Ave & Review Ave",
+   "short_name": "6001.01",
+   "lat": 40.738663,
+   "lon": -73.940938,
+   "capacity": 19,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "606c7384-75e9-4988-858a-07b88b3a9413",
+   "name": "Calyer St & Jewel St",
+   "short_name": "5743.02",
+   "lat": 40.72984,
+   "lon": -73.94839,
+   "capacity": 40,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1814548067447122618",
+   "name": "Calyer St & West St",
+   "short_name": "5676.04",
+   "lat": 40.72693,
+   "lon": -73.95863,
+   "capacity": 35,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd18dd-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Driggs Ave & Lorimer St",
+   "short_name": "5481.04",
+   "lat": 40.721791,
+   "lon": -73.950415,
+   "capacity": 27,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "2256067489208956714",
+   "name": "Driggs Ave & N 12 St",
+   "short_name": "5411.10",
+   "lat": 40.720251,
+   "lon": -73.952932,
+   "capacity": 39,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd1b65-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Driggs Ave & N Henry St",
+   "short_name": "5542.04",
+   "lat": 40.72325,
+   "lon": -73.94308,
+   "capacity": 57,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786696251091417274",
+   "name": "Eagle St & Manhattan Ave",
+   "short_name": "5902.07",
+   "lat": 40.735217,
+   "lon": -73.954926,
+   "capacity": 35,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "74feba30-26a5-4949-b3a0-d6e13ba1a20c",
+   "name": "Engert Ave & McGuinness Blvd",
+   "short_name": "5473.03",
+   "lat": 40.72158,
+   "lon": -73.94546,
+   "capacity": 19,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd217d-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Franklin St & Dupont St",
+   "short_name": "5944.01",
+   "lat": 40.73564,
+   "lon": -73.95866,
+   "capacity": 27,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd0808-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Graham Ave & Herbert St",
+   "short_name": "5403.05",
+   "lat": 40.719293,
+   "lon": -73.945004,
+   "capacity": 26,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "63a838a8-9acf-4ba1-91f5-c676f6ef2f7d",
+   "name": "Green St & McGuinness Blvd",
+   "short_name": "5860.02",
+   "lat": 40.73396,
+   "lon": -73.95204,
+   "capacity": 20,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd1f44-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Greenpoint Ave & Manhattan Ave",
+   "short_name": "5785.05",
+   "lat": 40.73026,
+   "lon": -73.95394,
+   "capacity": 27,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786699974232881542",
+   "name": "Greenpoint Ave & Monitor St",
+   "short_name": "5851.01",
+   "lat": 40.73224,
+   "lon": -73.94383,
+   "capacity": 20,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786687245202023014",
+   "name": "Greenpoint Ave & West St",
+   "short_name": "5752.09",
+   "lat": 40.729803,
+   "lon": -73.959099,
+   "capacity": 35,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd20eb-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Huron St & Franklin St",
+   "short_name": "5869.04",
+   "lat": 40.73266,
+   "lon": -73.95826,
+   "capacity": 35,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd2060-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "India St & Manhattan Ave",
+   "short_name": "5826.02",
+   "lat": 40.732322,
+   "lon": -73.955086,
+   "capacity": 50,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "bfe5e69d-89ff-48b3-bf20-80cbdfa443e0",
+   "name": "India St Pier",
+   "short_name": "5794.05",
+   "lat": 40.731735,
+   "lon": -73.961239,
+   "capacity": 54,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dcac42-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Kent Ave & N 7 St",
+   "short_name": "5489.03",
+   "lat": 40.720368,
+   "lon": -73.961651,
+   "capacity": 79,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "c3b255d8-b690-4825-b1e9-a1d1680e5542",
+   "name": "Kent St & McGuinness Blvd",
+   "short_name": "5785.10",
+   "lat": 40.73124,
+   "lon": -73.95161,
+   "capacity": 20,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "457ea5d7-d643-4028-87db-46dee0b81555",
+   "name": "Kingsland Ave & Nassau Ave",
+   "short_name": "5613.04",
+   "lat": 40.72577,
+   "lon": -73.94173,
+   "capacity": 39,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "7a771842-c090-4da1-8c13-72b7f4f50a87",
+   "name": "Leonard St & Nassau Ave",
+   "short_name": "5550.09",
+   "lat": 40.723957,
+   "lon": -73.949844,
+   "capacity": 36,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "dba67615-a7e0-4c44-ab1b-b464033ec9b9",
+   "name": "Lorimer St & Calyer St",
+   "short_name": "5709.04",
+   "lat": 40.72795,
+   "lon": -73.95414,
+   "capacity": 20,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "2252359266241952490",
+   "name": "Manhattan Ave & Commercial St",
+   "short_name": "6019.08",
+   "lat": 40.737996,
+   "lon": -73.955659,
+   "capacity": 31,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "bd30f2a1-38ec-474d-9e36-07f688e87427",
+   "name": "Manhattan Ave & Leonard St",
+   "short_name": "5442.09",
+   "lat": 40.72084,
+   "lon": -73.94844,
+   "capacity": 18,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd2208-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "McGuinness Blvd & Eagle St",
+   "short_name": "5977.01",
+   "lat": 40.73555,
+   "lon": -73.95284,
+   "capacity": 42,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd1d9c-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Meserole Ave & Manhattan Ave",
+   "short_name": "5666.04",
+   "lat": 40.727086,
+   "lon": -73.952991,
+   "capacity": 28,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd1eb2-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Milton St & Franklin St",
+   "short_name": "5752.07",
+   "lat": 40.72906,
+   "lon": -73.95779,
+   "capacity": 33,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786696384892428996",
+   "name": "Monitor St & Meeker Ave",
+   "short_name": "5473.06",
+   "lat": 40.721226,
+   "lon": -73.941845,
+   "capacity": 21,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "344064f8-e82f-40fb-b235-aff506b77ae5",
+   "name": "Morgan Ave & Lombardy St",
+   "short_name": "5503.01",
+   "lat": 40.72226,
+   "lon": -73.93889,
+   "capacity": 30,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786697166576476490",
+   "name": "N 10 St & Berry St",
+   "short_name": "5450.01",
+   "lat": 40.720253,
+   "lon": -73.957082,
+   "capacity": 47,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "0e3dedfb-df10-4900-a67b-95349a81bc5c",
+   "name": "N 11 St & Kent Ave",
+   "short_name": "5489.04",
+   "lat": 40.722482,
+   "lon": -73.959219,
+   "capacity": 27,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd1846-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "N 12 St & Bedford Ave",
+   "short_name": "5450.04",
+   "lat": 40.720798,
+   "lon": -73.954847,
+   "capacity": 47,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd1ad8-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "N 15 St & Wythe Ave",
+   "short_name": "5520.09",
+   "lat": 40.724055,
+   "lon": -73.955736,
+   "capacity": 54,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786697528321024934",
+   "name": "N 5 St & Northside Piers",
+   "short_name": "5458.02",
+   "lat": 40.719876,
+   "lon": -73.963865,
+   "capacity": 45,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1791188268875152272",
+   "name": "N 9 St & Wythe Ave",
+   "short_name": "5489.06",
+   "lat": 40.72054,
+   "lon": -73.959,
+   "capacity": 49,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786700154621508184",
+   "name": "N Henry St & Norman Ave",
+   "short_name": "5656.03",
+   "lat": 40.7277,
+   "lon": -73.94395,
+   "capacity": 29,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd17a5-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Nassau Ave & Newell St",
+   "short_name": "5623.03",
+   "lat": 40.724813,
+   "lon": -73.947526,
+   "capacity": 51,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66dd1c7f-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Nassau Ave & Russell St",
+   "short_name": "5581.01",
+   "lat": 40.72557,
+   "lon": -73.94434,
+   "capacity": 51,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786375069262703476",
+   "name": "Norman Ave & Leonard St",
+   "short_name": "5666.11",
+   "lat": 40.725819,
+   "lon": -73.950815,
+   "capacity": 31,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "2100948436010992354",
+   "name": "Review Ave & Greenpoint Ave",
+   "short_name": "5883.08",
+   "lat": 40.734247,
+   "lon": -73.937768,
+   "capacity": 17,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "66de73fd-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Richardson St & N Henry St",
+   "short_name": "5433.03",
+   "lat": 40.719079,
+   "lon": -73.942237,
+   "capacity": 25,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1808184356986544410",
+   "name": "Van Dam St & Meeker Ave",
+   "short_name": "5572.07",
+   "lat": 40.72532,
+   "lon": -73.9368,
+   "capacity": 31,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1786375597504305174",
+   "name": "Wythe Ave & N 13 St",
+   "short_name": "5558.04",
+   "lat": 40.722767,
+   "lon": -73.957021,
+   "capacity": 43,
+   "zone": "greenpoint"
+  },
+  {
+   "station_id": "1960020817312746312",
+   "name": "Allen St & Hester St",
+   "short_name": "5343.10",
+   "lat": 40.71606,
+   "lon": -73.99191,
+   "capacity": 117,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbf062-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Allen St & Rivington St",
+   "short_name": "5414.06",
+   "lat": 40.720196,
+   "lon": -73.989978,
+   "capacity": 42,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db72f1-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Allen St & Stanton St",
+   "short_name": "5484.09",
+   "lat": 40.722055,
+   "lon": -73.989111,
+   "capacity": 49,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db6cd4-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Ave D & E 3 St",
+   "short_name": "5436.09",
+   "lat": 40.720828,
+   "lon": -73.977932,
+   "capacity": 55,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db46d7-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Ave D & E 8 St",
+   "short_name": "5506.10",
+   "lat": 40.723684,
+   "lon": -73.975748,
+   "capacity": 30,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbc7d2-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Bialystoker Pl & Delancey St",
+   "short_name": "5335.03",
+   "lat": 40.716226,
+   "lon": -73.982612,
+   "capacity": 33,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db6f2e-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Canal St & Rutgers St",
+   "short_name": "5303.08",
+   "lat": 40.714275,
+   "lon": -73.9899,
+   "capacity": 45,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db93a1-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Cherry St",
+   "short_name": "5181.04",
+   "lat": 40.712199,
+   "lon": -73.979481,
+   "capacity": 36,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "f833d403-2cf5-424a-a3b3-0314a44b4a67",
+   "name": "Clinton St & Cherry St",
+   "short_name": "5190.09",
+   "lat": 40.711471,
+   "lon": -73.986726,
+   "capacity": 49,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbc420-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Clinton St & Grand St",
+   "short_name": "5303.06",
+   "lat": 40.715595,
+   "lon": -73.98703,
+   "capacity": 54,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "2098714441479661752",
+   "name": "Clinton St & Grand St",
+   "short_name": "5303.06_",
+   "lat": 40.715738,
+   "lon": -73.98699,
+   "capacity": 15,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dba0ba-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Columbia St & Rivington St",
+   "short_name": "5365.02",
+   "lat": 40.7174,
+   "lon": -73.980166,
+   "capacity": 42,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "8ea09819-cd88-4732-b047-c0549f0b370f",
+   "name": "Delancey St & Eldridge St",
+   "short_name": "5414.07",
+   "lat": 40.719383,
+   "lon": -73.991479,
+   "capacity": 31,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "7b0227aa-bbf5-4731-a49a-765b4afac483",
+   "name": "E 1 St & 1 Ave",
+   "short_name": "5593.01",
+   "lat": 40.723356,
+   "lon": -73.98865,
+   "capacity": 75,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "4168e5a4-c7ec-4045-bfc8-84ac5edbe845",
+   "name": "E 1 St & Bowery",
+   "short_name": "5636.13",
+   "lat": 40.724861,
+   "lon": -73.992131,
+   "capacity": 44,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "93e2e1a5-49c5-41f8-a6bf-b399b6a5140d",
+   "name": "E 2 St & Ave A",
+   "short_name": "5553.10",
+   "lat": 40.723077,
+   "lon": -73.985836,
+   "capacity": 68,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db6aae-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "E 2 St & Ave B",
+   "short_name": "5515.02",
+   "lat": 40.722174,
+   "lon": -73.983688,
+   "capacity": 85,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db2f4c-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "E 2 St & Ave C",
+   "short_name": "5476.03",
+   "lat": 40.720874,
+   "lon": -73.980858,
+   "capacity": 84,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dc0f8a-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "E 3 St & 1 Ave",
+   "short_name": "5553.03",
+   "lat": 40.724677,
+   "lon": -73.987834,
+   "capacity": 59,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "edc9b877-c311-46b4-a780-59ee7e692324",
+   "name": "E 4 St & Ave B",
+   "short_name": "5515.08",
+   "lat": 40.723347,
+   "lon": -73.982659,
+   "capacity": 37,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "0096fecb-3a56-4585-9204-aa9554f7bc49",
+   "name": "E 5 St & Ave A",
+   "short_name": "5626.06",
+   "lat": 40.72479,
+   "lon": -73.984301,
+   "capacity": 48,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbec40-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "E 5 St & Ave C",
+   "short_name": "5545.04",
+   "lat": 40.722992,
+   "lon": -73.979955,
+   "capacity": 55,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db76a1-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "E 6 St & Ave B",
+   "short_name": "5584.04",
+   "lat": 40.724537,
+   "lon": -73.981854,
+   "capacity": 59,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbf4ac-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "E 6 St & Ave D",
+   "short_name": "5506.14",
+   "lat": 40.722281,
+   "lon": -73.976687,
+   "capacity": 45,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "eb6c2359-4825-4bf4-8f2d-8b6dd2bf4212",
+   "name": "E 7 St & Ave C",
+   "short_name": "5545.01",
+   "lat": 40.724129,
+   "lon": -73.979013,
+   "capacity": 38,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "fbee1143-e93f-418d-b6bc-8fde4a9a8746",
+   "name": "E Houston St & Columbia St",
+   "short_name": "5436.11",
+   "lat": 40.719786,
+   "lon": -73.978716,
+   "capacity": 51,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dc86d9-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Forsyth St & Broome St",
+   "short_name": "5453.05",
+   "lat": 40.718939,
+   "lon": -73.992663,
+   "capacity": 66,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbf518-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Forsyth St & Canal St",
+   "short_name": "5270.07",
+   "lat": 40.715815,
+   "lon": -73.994224,
+   "capacity": 29,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "9e3603ee-2b7d-4147-a7b5-48bbd778902c",
+   "name": "Forsyth St & Grand St",
+   "short_name": "5382.07",
+   "lat": 40.717798,
+   "lon": -73.993161,
+   "capacity": 63,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "8cb0375d-bcb2-4c90-9773-41c3c8fdf8d8",
+   "name": "Grand St & Samuel Dickstein Plaza",
+   "short_name": "5335.07",
+   "lat": 40.715119,
+   "lon": -73.984171,
+   "capacity": 81,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dc76cd-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Henry St & Grand St",
+   "short_name": "5294.04",
+   "lat": 40.714211,
+   "lon": -73.981095,
+   "capacity": 36,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "9e5fd5b6-c5f2-4694-9406-a44b7d0146d9",
+   "name": "Kenmare St & Elizabeth St",
+   "short_name": "5453.06",
+   "lat": 40.72054,
+   "lon": -73.9949,
+   "capacity": 54,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db9cc4-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Madison St & Clinton St",
+   "short_name": "5190.07",
+   "lat": 40.71269,
+   "lon": -73.987763,
+   "capacity": 39,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db64d1-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Madison St & Montgomery St",
+   "short_name": "5262.09",
+   "lat": 40.713126,
+   "lon": -73.984844,
+   "capacity": 20,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbf362-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Market St & Cherry St",
+   "short_name": "5198.04",
+   "lat": 40.710762,
+   "lon": -73.994004,
+   "capacity": 45,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "99142ec8-c0e7-47ca-916c-c1097d48e133",
+   "name": "Market St & Henry St",
+   "short_name": "5270.09",
+   "lat": 40.713107,
+   "lon": -73.994464,
+   "capacity": 42,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db4158-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Mott St & Prince St",
+   "short_name": "5561.04",
+   "lat": 40.72318,
+   "lon": -73.9948,
+   "capacity": 39,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db728c-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Norfolk St & Broome St",
+   "short_name": "5374.01",
+   "lat": 40.717227,
+   "lon": -73.988021,
+   "capacity": 59,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "063e7e78-b810-4a2f-8045-a82a0d69d752",
+   "name": "Orchard St & Grand St",
+   "short_name": "5343.11",
+   "lat": 40.717318,
+   "lon": -73.990678,
+   "capacity": 45,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db6889-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Pike St & E Broadway",
+   "short_name": "5270.05",
+   "lat": 40.714067,
+   "lon": -73.992939,
+   "capacity": 34,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db930d-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Pike St & Monroe St",
+   "short_name": "5159.04",
+   "lat": 40.711731,
+   "lon": -73.99193,
+   "capacity": 27,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbefee-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Pitt St & Stanton St",
+   "short_name": "5406.04",
+   "lat": 40.719261,
+   "lon": -73.98178,
+   "capacity": 15,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dc3ab9-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Rivington St & Chrystie St",
+   "short_name": "5453.01",
+   "lat": 40.721101,
+   "lon": -73.991925,
+   "capacity": 64,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbc37a-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Rivington St & Ridge St",
+   "short_name": "5406.02",
+   "lat": 40.718502,
+   "lon": -73.983299,
+   "capacity": 61,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "1e3a16ff-65ba-4d34-b3c6-37aff44e085a",
+   "name": "Rutgers St & Henry St",
+   "short_name": "5230.02",
+   "lat": 40.713322,
+   "lon": -73.990097,
+   "capacity": 40,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db4671-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Stanton St & Chrystie St",
+   "short_name": "5523.02",
+   "lat": 40.722293,
+   "lon": -73.991475,
+   "capacity": 47,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66db9e99-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Stanton St & Mangin St",
+   "short_name": "5326.06",
+   "lat": 40.717821,
+   "lon": -73.976289,
+   "capacity": 19,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "9394fb49-583f-4426-8d2f-a2b0ffb584d2",
+   "name": "Stanton St & Norfolk St",
+   "short_name": "5445.07",
+   "lat": 40.720747,
+   "lon": -73.986274,
+   "capacity": 49,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dbf442-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Suffolk St & Stanton St",
+   "short_name": "5445.02",
+   "lat": 40.720664,
+   "lon": -73.98518,
+   "capacity": 79,
+   "zone": "manhattan_landing"
+  },
+  {
+   "station_id": "66dc192f-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Bedford Ave & S 9 St",
+   "short_name": "5093.01",
+   "lat": 40.708531,
+   "lon": -73.96409,
+   "capacity": 23,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dce5c9-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Boerum St & Broadway",
+   "short_name": "5004.02",
+   "lat": 40.705381,
+   "lon": -73.949765,
+   "capacity": 19,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "18415ea7-efce-408d-bcb9-4693fb088dda",
+   "name": "Broadway & Berry St",
+   "short_name": "5164.05",
+   "lat": 40.710361,
+   "lon": -73.965304,
+   "capacity": 34,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786698815186893280",
+   "name": "Broadway & Kent Ave",
+   "short_name": "5134.09",
+   "lat": 40.710888,
+   "lon": -73.968329,
+   "capacity": 35,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dced76-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Broadway & Roebling St",
+   "short_name": "5125.07",
+   "lat": 40.709248,
+   "lon": -73.960631,
+   "capacity": 27,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dccd65-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Broadway & Whipple St",
+   "short_name": "4883.03",
+   "lat": 40.701666,
+   "lon": -73.94373,
+   "capacity": 27,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dea52b-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Devoe St & Lorimer St",
+   "short_name": "5259.06",
+   "lat": 40.713352,
+   "lon": -73.949103,
+   "capacity": 32,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "e58234a3-5b23-427e-948f-c1e4571b2bfa",
+   "name": "Division Ave & Hooper St",
+   "short_name": "5045.05",
+   "lat": 40.706842,
+   "lon": -73.954435,
+   "capacity": 61,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dce9b5-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Division Ave & Marcy Ave",
+   "short_name": "5084.03",
+   "lat": 40.707087,
+   "lon": -73.957968,
+   "capacity": 33,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1b28836b-29fd-47a7-9a98-44cd792918fb",
+   "name": "Driggs Ave & N 9 St",
+   "short_name": "5411.08",
+   "lat": 40.71817,
+   "lon": -73.955201,
+   "capacity": 51,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786696780996714874",
+   "name": "Driggs Ave & S 2 St",
+   "short_name": "5235.10",
+   "lat": 40.712628,
+   "lon": -73.960575,
+   "capacity": 30,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "3863f086-ae35-4d0e-8c91-2b6e3e5827a1",
+   "name": "Frost St & Meeker Ave",
+   "short_name": "5371.07",
+   "lat": 40.717662,
+   "lon": -73.9488,
+   "capacity": 38,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcf897-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Graham Ave & Conselyea St",
+   "short_name": "5291.05",
+   "lat": 40.715143,
+   "lon": -73.944507,
+   "capacity": 30,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcf0b3-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Graham Ave & Grand St",
+   "short_name": "5178.06",
+   "lat": 40.711863,
+   "lon": -73.944024,
+   "capacity": 29,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dd056e-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Graham Ave & Withers St",
+   "short_name": "5403.04",
+   "lat": 40.716981,
+   "lon": -73.944859,
+   "capacity": 18,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dc3782-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Grand St & Havemeyer St",
+   "short_name": "5267.08",
+   "lat": 40.712868,
+   "lon": -73.956981,
+   "capacity": 31,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "2192611139069500860",
+   "name": "Grand St & Wythe Ave",
+   "short_name": "5348.10",
+   "lat": 40.71575,
+   "lon": -73.96433,
+   "capacity": 56,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcf30d-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Hope St & Union Ave",
+   "short_name": "5187.03",
+   "lat": 40.711674,
+   "lon": -73.951413,
+   "capacity": 25,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dea674-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Jackson St & Leonard St",
+   "short_name": "5332.10",
+   "lat": 40.71638,
+   "lon": -73.948213,
+   "capacity": 22,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "c7604869-5b55-40cf-812e-fc97901bdf14",
+   "name": "Kent Ave & Division Ave",
+   "short_name": "5021.05",
+   "lat": 40.706564,
+   "lon": -73.968319,
+   "capacity": 44,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786697771181570266",
+   "name": "Kent Ave & Grand St",
+   "short_name": "5388.01",
+   "lat": 40.716425,
+   "lon": -73.96594,
+   "capacity": 45,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "2133952475068346460",
+   "name": "Kent Ave & N 3 St",
+   "short_name": "5348.06",
+   "lat": 40.717979,
+   "lon": -73.964274,
+   "capacity": 55,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1871698223344654662",
+   "name": "Lee Ave & Taylor St",
+   "short_name": "5053.01",
+   "lat": 40.706732,
+   "lon": -73.961241,
+   "capacity": 25,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dce660-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Leonard St & Boerum St",
+   "short_name": "5036.06",
+   "lat": 40.705833,
+   "lon": -73.946446,
+   "capacity": 24,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dea596-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Leonard St & Maujer St",
+   "short_name": "5148.03",
+   "lat": 40.710369,
+   "lon": -73.94706,
+   "capacity": 24,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dce4fc-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Lorimer St & Broadway",
+   "short_name": "4965.01",
+   "lat": 40.704118,
+   "lon": -73.948186,
+   "capacity": 29,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1875672501601550456",
+   "name": "Lorimer St & Harrison Ave",
+   "short_name": "4892.02",
+   "lat": 40.702726,
+   "lon": -73.94984,
+   "capacity": 18,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786697932047949952",
+   "name": "Manhattan Ave & Devoe St",
+   "short_name": "5219.05",
+   "lat": 40.713532,
+   "lon": -73.945987,
+   "capacity": 24,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1869439170989701358",
+   "name": "Marcy Ave & Lynch St",
+   "short_name": "4933.03",
+   "lat": 40.702753,
+   "lon": -73.953168,
+   "capacity": 23,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1908785111291682996",
+   "name": "Marcy Ave & Rutledge St",
+   "short_name": "4933.04",
+   "lat": 40.703681,
+   "lon": -73.95427,
+   "capacity": 19,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dce567-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "McKibbin St & Manhattan Ave",
+   "short_name": "4996.08",
+   "lat": 40.705109,
+   "lon": -73.944073,
+   "capacity": 23,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dc8b6a-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Metropolitan Ave & Bedford Ave",
+   "short_name": "5308.04",
+   "lat": 40.715348,
+   "lon": -73.960241,
+   "capacity": 54,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcf922-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Metropolitan Ave & Meeker Ave",
+   "short_name": "5300.05",
+   "lat": 40.714133,
+   "lon": -73.952344,
+   "capacity": 30,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786697003367719132",
+   "name": "N 5 St & Wythe Ave",
+   "short_name": "5419.04",
+   "lat": 40.718389,
+   "lon": -73.961501,
+   "capacity": 39,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dd039b-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "N 6 St & Bedford Ave",
+   "short_name": "5379.10",
+   "lat": 40.717452,
+   "lon": -73.958509,
+   "capacity": 28,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786698974100683436",
+   "name": "N 7 St & Driggs Ave",
+   "short_name": "5340.01",
+   "lat": 40.716967,
+   "lon": -73.956388,
+   "capacity": 53,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "81bec993-29a5-4e70-8f60-eecdf16c7be4",
+   "name": "Railroad Ave & Kay Ave",
+   "short_name": "4990.02",
+   "lat": 40.705148,
+   "lon": -73.970781,
+   "capacity": 30,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcf640-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Roebling St & N 4 St",
+   "short_name": "5267.09",
+   "lat": 40.71469,
+   "lon": -73.95739,
+   "capacity": 25,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786698158713921798",
+   "name": "S 2 St & Kent Ave",
+   "short_name": "5276.04",
+   "lat": 40.714731,
+   "lon": -73.966612,
+   "capacity": 47,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dc4599-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "S 3 St & Bedford Ave",
+   "short_name": "5235.05",
+   "lat": 40.712605,
+   "lon": -73.962644,
+   "capacity": 25,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcf023-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "S 4 St & Rodney St",
+   "short_name": "5156.05",
+   "lat": 40.70934,
+   "lon": -73.95608,
+   "capacity": 21,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786698321265653818",
+   "name": "S 4 St & Roebling St",
+   "short_name": "5195.06",
+   "lat": 40.710709,
+   "lon": -73.959724,
+   "capacity": 41,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dc252e-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "S 4 St & Wythe Ave",
+   "short_name": "5204.05",
+   "lat": 40.712859,
+   "lon": -73.965903,
+   "capacity": 37,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dc8768-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "S 5 Pl & S 5 St",
+   "short_name": "5125.03",
+   "lat": 40.710451,
+   "lon": -73.960876,
+   "capacity": 43,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1786696564295760054",
+   "name": "Scholes St & Lorimer St",
+   "short_name": "5076.04",
+   "lat": 40.708323,
+   "lon": -73.948732,
+   "capacity": 27,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcec6b-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Scholes St & Manhattan Ave",
+   "short_name": "5108.01",
+   "lat": 40.708704,
+   "lon": -73.944862,
+   "capacity": 36,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcecfa-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Stagg St & Union Ave",
+   "short_name": "5117.05",
+   "lat": 40.708771,
+   "lon": -73.950953,
+   "capacity": 33,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "1871698348432996504",
+   "name": "Taylor St & Bedford Ave",
+   "short_name": "4982.02",
+   "lat": 40.705774,
+   "lon": -73.963252,
+   "capacity": 23,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dcfaf6-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Union Ave & Jackson St",
+   "short_name": "5300.06",
+   "lat": 40.716075,
+   "lon": -73.952029,
+   "capacity": 19,
+   "zone": "williamsburg_core"
+  },
+  {
+   "station_id": "66dccc99-0aca-11e7-82f6-3863bb44ef7c",
+   "name": "Union Ave & Wallabout St",
+   "short_name": "4818.03",
+   "lat": 40.700295,
+   "lon": -73.950323,
+   "capacity": 31,
+   "zone": "williamsburg_core"
+  }
+ ]
+}

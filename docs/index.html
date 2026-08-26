@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Williamsburg Citi Bike</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>Williamsburg Citi Bike</h1>
+    <div class="sub" id="subtitle">loading&hellip;</div>
+  </div>
+  <div class="wx" id="wx"></div>
+</header>
+
+<div class="modebar">
+  <div class="seg" id="mode">
+    <button data-mode="get"  class="on">Get a bike</button>
+    <button data-mode="dock">Dock a bike</button>
+  </div>
+  <div class="seg" id="kind">
+    <button data-kind="any" class="on">Any</button>
+    <button data-kind="ebike">E-bike</button>
+    <button data-kind="classic">Classic</button>
+  </div>
+  <button id="locate" class="ghost">Use my location</button>
+</div>
+
+<main>
+  <section class="panel">
+    <div class="originline" id="originline">Set an origin to rank by walking time.</div>
+    <ol id="list"></ol>
+  </section>
+  <section class="mapwrap"><div id="map"></div></section>
+</main>
+
+<footer id="foot"></footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="app.js"></script>
+</body>
+</html>

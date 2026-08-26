@@ -1,0 +1,54 @@
+name: daily
+
+on:
+  schedule:
+    - cron: '15 8 * * *'   # 08:15 UTC = 04:15 ET (03:15 during EST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  rollup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Backfill weather
+        run: python3 collect/weather.py --days 7
+
+      - name: Compact finished days
+        run: python3 collect/compact.py
+
+      - name: Build database
+        run: python3 db/build_db.py
+
+      - name: Rebuild dashboard stats
+        run: python3 analysis/build_stats.py
+
+      - name: Health report
+        run: python3 ops/health.py
+
+      - name: Commit rollup
+        run: |
+          git config user.name  "citibike-collector"
+          git config user.email "actions@github.com"
+          git add data docs/data
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -m "daily rollup: $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "push failed after retries" >&2; exit 1

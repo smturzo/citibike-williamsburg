@@ -1,0 +1,5 @@
+{
+  "_comment": "Copy to local.json and fill in. local.json is gitignored - your home coordinates never reach GitHub.",
+  "home": {"lat": 40.7141, "lon": -73.9614, "label": "home"},
+  "walk_speed_mps": 1.35
+}
