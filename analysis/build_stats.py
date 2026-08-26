@@ -5,42 +5,42 @@ Produces docs/data/stats.json: for every tracked station, at every (weekday,
 target time) slot, the probability that you'd find a classic bike, an e-bike, and
 a free dock.
 
-Two deliberate choices:
+Three deliberate choices:
 
-1. Each target time aggregates a +/-7 minute window, not an exact instant. A
-   single 5-minute bucket on 5 Fridays is 5 observations, which is not enough to
-   estimate a probability. The window trades a little time resolution for
-   estimates that are actually stable.
+1. ONE pass over snapshots, grouped by (sid, dow, mod), and the +/-7 minute
+   windows are summed in Python afterwards. The old version ran a query per slot;
+   under the v2 primary key (which leads with sid) each of those would degrade
+   into a full table scan, 135 times over.
 
-2. Probabilities use a Laplace-smoothed estimate. With few observations, a raw
-   rate reports 0.00 or 1.00 far too confidently - "this station is ALWAYS empty"
-   off three samples is exactly the kind of claim that survives into a conclusion
-   it shouldn't. Smoothing pulls thin evidence toward 0.5; `n` is published
-   alongside so the dashboard can grey out slots that remain too thin to trust.
+2. Each target time aggregates a window, not an exact instant. A single 5-minute
+   bucket on 5 Fridays is 5 observations, which is not enough to estimate a
+   probability from.
+
+3. Probabilities are Laplace-smoothed. With few observations a raw rate reports
+   0.00 or 1.00 far too confidently - "this station is ALWAYS empty" off three
+   samples is exactly the kind of claim that survives into a conclusion it
+   shouldn't. `n` is published alongside so thin slots can be greyed out.
 """
 import json, os, sqlite3, sys
+from collections import defaultdict
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB = os.path.join(ROOT, "data", "citibike.db")
 OUT = os.path.join(ROOT, "docs", "data", "stats.json")
 
-# The times asked for, as minutes since local midnight.
 TARGET_TIMES = [
     (7, 0), (8, 0), (9, 0), (10, 0), (11, 0), (12, 0), (13, 0), (14, 0), (15, 0),
     (16, 0), (16, 30), (16, 50), (17, 0), (17, 20), (17, 30), (18, 0), (18, 30),
     (19, 0), (19, 30), (20, 0), (21, 0), (21, 30), (22, 0), (23, 0),
     (0, 0), (0, 30), (1, 0),
 ]
-TARGET_DOWS = [0, 2, 4, 5, 6]          # Mon, Wed, Fri, Sat, Sun
+TARGET_DOWS = [0, 2, 4, 5, 6]
 DOW_NAMES = {0: "Mon", 2: "Wed", 4: "Fri", 5: "Sat", 6: "Sun"}
-WINDOW = 7                              # minutes either side
-MIN_N = 8                               # below this the dashboard marks a slot thin
-ALPHA = 1.0                             # Laplace pseudo-counts
-
-
-def smoothed(hits, n):
-    return (hits + ALPHA) / (n + 2 * ALPHA) if n else None
+WINDOW = 7
+MIN_N = 8
+ALPHA = 1.0
+BUCKET = 5      # minutes between snapshots
 
 
 def main():
@@ -48,72 +48,60 @@ def main():
         print("no database yet - run db/build_db.py first", file=sys.stderr)
         return 1
     con = sqlite3.connect(DB)
-    con.row_factory = sqlite3.Row
 
-    stations = {r["station_id"]: dict(r) for r in
-                con.execute("SELECT * FROM stations").fetchall()}
+    sid_to_station = {r[0]: r[1] for r in con.execute("SELECT sid, station_id FROM stations")}
+
+    # Single scan. flags = 3 means renting AND returning: a station out of service
+    # is not a data point about demand.
+    agg = {}
+    for row in con.execute("""
+        SELECT sid, dow, mod,
+               COUNT(*), SUM(bikes - ebikes > 0), SUM(ebikes > 0), SUM(docks > 0),
+               SUM(bikes - ebikes), SUM(ebikes), SUM(docks)
+        FROM snapshots WHERE flags = 3
+        GROUP BY sid, dow, mod
+    """):
+        agg[(row[0], row[1], row[2])] = row[3:]
 
     slots = [(d, h * 60 + m) for d in TARGET_DOWS for (h, m) in TARGET_TIMES]
-    slot_ix = {s: i for i, s in enumerate(slots)}
+    offsets = [o for o in range(-WINDOW, WINDOW + 1) if o % BUCKET == 0]
 
     blank = lambda: {"n": [0] * len(slots), "pc": [None] * len(slots),
                      "pe": [None] * len(slots), "pd": [None] * len(slots),
                      "mb": [None] * len(slots), "me": [None] * len(slots),
                      "md": [None] * len(slots)}
-    out = {sid: blank() for sid in stations}
+    out = {sid_to_station[s]: blank() for s in sid_to_station}
 
-    # One pass per slot: the (station_id, dow, mod) index makes each of these a
-    # range scan rather than a table scan.
-    for (dow, mod) in slots:
-        i = slot_ix[(dow, mod)]
-        lo, hi = mod - WINDOW, mod + WINDOW
-        if lo < 0 or hi >= 1440:
-            # A window straddling midnight wraps to the other end of the day.
-            cond = "(mod >= ? OR mod <= ?)"
-            args = (lo % 1440, hi % 1440)
-        else:
-            cond = "(mod BETWEEN ? AND ?)"
-            args = (lo, hi)
-
-        q = f"""
-            SELECT station_id,
-                   COUNT(*)                          AS n,
-                   SUM(classic > 0)                  AS c_hit,
-                   SUM(ebikes  > 0)                  AS e_hit,
-                   SUM(docks   > 0)                  AS d_hit,
-                   AVG(classic) AS mb, AVG(ebikes) AS me, AVG(docks) AS md
-            FROM snapshots
-            WHERE dow = ? AND {cond}
-              AND is_renting = 1          -- a station out of service is not a
-              AND is_returning = 1        -- data point about demand
-            GROUP BY station_id
-        """
-        for r in con.execute(q, (dow, *args)):
-            sid = r["station_id"]
-            if sid not in out:
+    for i, (dow, mod) in enumerate(slots):
+        for sid, station_id in sid_to_station.items():
+            n = ch = eh = dh = sb = se = sd = 0
+            for o in offsets:
+                a = agg.get((sid, dow, (mod + o) % 1440))
+                if a:
+                    n += a[0]; ch += a[1]; eh += a[2]; dh += a[3]
+                    sb += a[4]; se += a[5]; sd += a[6]
+            if not n:
                 continue
-            s, n = out[sid], r["n"]
+            s = out[station_id]
             s["n"][i] = n
-            s["pc"][i] = round(smoothed(r["c_hit"], n), 3)
-            s["pe"][i] = round(smoothed(r["e_hit"], n), 3)
-            s["pd"][i] = round(smoothed(r["d_hit"], n), 3)
-            s["mb"][i] = round(r["mb"], 1)
-            s["me"][i] = round(r["me"], 1)
-            s["md"][i] = round(r["md"], 1)
+            s["pc"][i] = round((ch + ALPHA) / (n + 2 * ALPHA), 3)
+            s["pe"][i] = round((eh + ALPHA) / (n + 2 * ALPHA), 3)
+            s["pd"][i] = round((dh + ALPHA) / (n + 2 * ALPHA), 3)
+            s["mb"][i] = round(sb / n, 1)
+            s["me"][i] = round(se / n, 1)
+            s["md"][i] = round(sd / n, 1)
 
-    span = con.execute("SELECT MIN(local_date), MAX(local_date), "
-                       "COUNT(DISTINCT local_date) FROM snapshots").fetchone()
+    days = con.execute("SELECT COUNT(DISTINCT hour_key/100) FROM snapshots").fetchone()[0]
+    span = con.execute("SELECT MIN(hour_key)/100, MAX(hour_key)/100 FROM snapshots").fetchone()
     total = con.execute("SELECT COUNT(*) FROM snapshots").fetchone()[0]
     con.close()
 
+    fmt = lambda d: f"{d//10000}-{(d//100)%100:02d}-{d%100:02d}" if d else None
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "first_date": span[0], "last_date": span[1], "n_days": span[2],
-        "n_observations": total,
-        "min_n": MIN_N,
-        "window_min": WINDOW,
-        "dows": TARGET_DOWS,
-        "dow_names": DOW_NAMES,
+        "first_date": fmt(span[0]), "last_date": fmt(span[1]), "n_days": days,
+        "n_observations": total, "min_n": MIN_N, "window_min": WINDOW,
+        "dows": TARGET_DOWS, "dow_names": DOW_NAMES,
         "times": [f"{h:02d}:{m:02d}" for (h, m) in TARGET_TIMES],
         "slots": [[d, t] for (d, t) in slots],
         "stations": out,
@@ -123,11 +111,11 @@ def main():
         json.dump(payload, f, separators=(",", ":"))
 
     filled = sum(1 for s in out.values() for n in s["n"] if n >= MIN_N)
+    tot = len(out) * len(slots)
     print(f"stats.json: {len(out)} stations x {len(slots)} slots")
-    print(f"  days covered : {span[2]} ({span[0]} .. {span[1]})")
-    print(f"  observations : {total}")
-    print(f"  slots with n>={MIN_N}: {filled}/{len(out) * len(slots)} "
-          f"({100 * filled / (len(out) * len(slots)):.1f}%)")
+    print(f"  days covered : {days} ({fmt(span[0])} .. {fmt(span[1])})")
+    print(f"  observations : {total:,}")
+    print(f"  slots with n>={MIN_N}: {filled}/{tot} ({100*filled/tot:.1f}%)")
     print(f"  size         : {os.path.getsize(OUT)/1e6:.2f} MB")
     return 0
 

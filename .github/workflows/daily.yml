@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: daily
@@ -17,12 +15,17 @@ concurrency:
 jobs:
   rollup:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Pull staged shards
+        run: ops/collect_staging.sh origin data-staging
 
       - name: Backfill weather
         run: python3 collect/weather.py --days 7
@@ -39,12 +42,16 @@ jobs:
       - name: Health report
         run: python3 ops/health.py
 
-      - name: Commit rollup
+      - name: Size guard
+        run: python3 ops/sizecheck.py --fail-over-budget
+
+      - name: Commit rollup to main
+        id: commit
         run: |
           git config user.name  "citibike-collector"
           git config user.email "actions@github.com"
-          git add data docs/data
-          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git add data docs/data config/station_keys.json
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
           git commit -m "daily rollup: $(date -u +%Y-%m-%d)"
           for i in 1 2 3 4 5; do
             git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
@@ -52,3 +59,8 @@ jobs:
             sleep $((RANDOM % 8 + 3))
           done
           echo "push failed after retries" >&2; exit 1
+
+      # Only after compaction is safely on main, or staged data would be lost.
+      - name: Reset staging branch
+        if: success()
+        run: ops/reset_staging.sh origin data-staging

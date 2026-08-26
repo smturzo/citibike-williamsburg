@@ -44,11 +44,45 @@ collect/collect.py       GBFS poll -> data/raw/<date>/<HHMM>-<src>.csv
 collect/compact.py       folds finished days into one .csv.gz (~12x smaller)
 collect/weather.py       Open-Meteo hourly backfill
 collect/resolve_stations.py   rebuild the station set after zone edits
+db/station_keys.py       append-only station_id -> small int registry
 db/build_db.py           CSVs -> data/citibike.db (idempotent)
+analysis/fetch_trips.sh  download + filter a month of the trip archive
+analysis/extract_trips.py    ~1GB monthly zip -> trips touching our stations
 analysis/build_stats.py  DB -> docs/data/stats.json (the day x time grid)
 ops/health.py            coverage report — where and when we went blind
+ops/sizecheck.py         storage budget guard (fails the daily run if over)
+ops/push_shards.sh       stage shards on the throwaway branch
 docs/                    the dashboard (GitHub Pages root)
 ```
+
+## Storage
+
+Two hard budgets, enforced by `ops/sizecheck.py` in the daily workflow — it exits
+nonzero if a 12-month projection breaches either, so drift shows up as a failed
+run rather than a surprise a year out.
+
+| | 12-month projection | Budget |
+|---|---|---|
+| GitHub repo | **416 MB** | 1.0 GB |
+| Local disk (incl. SQLite) | **1.09 GB** | 3.0 GB |
+
+Getting there took two decisions worth knowing about:
+
+**Shards never enter `main`'s history.** Git keeps every blob it ever saw, so
+committing 288 small CSVs a day costs ~464 MB/year in `main` even though
+compaction deletes them the next morning. They're staged on a `data-staging`
+branch that is force-reset to an empty orphan commit after each compaction, so
+`main` only ever receives the compacted `.csv.gz` (~137 MB/year).
+
+**The snapshots table is 33 bytes/row, down from 291.** Stations are a small int
+from `config/station_keys.json` rather than a 19-character GBFS id; `classic` and
+`local_date` are derived instead of stored; service flags are bit-packed. The
+primary key is ordered `(sid, dow, mod, ts_bucket)` so the day × time query is a
+PK range scan, which removed the need for **any** secondary index — those were a
+large share of the old row cost. Result: 5.96 GB/year → 0.68 GB/year.
+
+Raw trip zips (~1 GB each) are deleted after extraction and are excluded from the
+budget, since they're re-downloadable from S3 at any time.
 
 Raw CSVs are the source of truth; `citibike.db` is derived and gitignored.
 CSVs diff, merge, and compress. A SQLite binary does none of those.
@@ -79,6 +113,9 @@ git remote add origin git@github.com:<you>/<repo>.git && git push -u origin main
 In **Settings → Pages**, set source to `main` / `/docs`.
 In **Settings → Actions → General**, allow *Read and write permissions* so the
 workflows can commit data back.
+
+The `data-staging` branch is created automatically on the first collector run.
+Never merge it — it is transient shard storage and gets force-reset daily.
 
 **3. Your origin**
 
@@ -119,5 +156,9 @@ grid needs roughly **4 weeks** before slots have enough observations to be
 meaningful — until then the dashboard says so explicitly rather than showing
 confident numbers off three samples.
 
-Not yet built: historical trip-archive analysis (available immediately, no wait),
-weather-effect analysis (needs enough rainy days), and predictive modelling.
+**Trip archive** (`analysis/fetch_trips.sh 202607`) needs no waiting — July 2026
+alone has 1,043,979 rides touching the tracked stations, 20.9% of all NYC Citi
+Bike traffic that month.
+
+Not yet built: the trip-archive *analysis* itself, weather-effect analysis (needs
+enough rainy days to contrast against dry ones), and predictive modelling.
