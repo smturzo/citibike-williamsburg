@@ -7,7 +7,7 @@
 
 Projections use measured rates, not guesses:
   * 33 bytes/row in SQLite      (measured, schema v2, 56,160-row day)
-  * 6.7 bytes/row compacted gz  (measured, real shards at compresslevel 9)
+  * 8.3 bytes/row compacted gz (measured, a real full day of production data)
   * 22.1 MB/month filtered trips (measured, July 2026)
 
 Run with --fail-over-budget to exit nonzero when a 12-month projection breaches a
@@ -24,7 +24,7 @@ LOCAL_BUDGET = 3.0 * 1e9
 
 ROWS_PER_DAY = 195 * 288        # stations x 5-min buckets
 DB_BYTES_PER_ROW = 33
-GZ_BYTES_PER_ROW = 6.7
+GZ_BYTES_PER_ROW = 8.3
 TRIPS_MB_PER_MONTH = 22.1
 
 
