@@ -2,33 +2,40 @@ name: collect
 
 on:
   schedule:
-    # Every 5 minutes. GitHub runs scheduled workflows on a best-effort basis and
-    # will delay or drop them under load, so real spacing is irregular. That is
-    # expected, and is why the Mac collector runs too - see README.
-    - cron: '*/5 * * * *'
+    # Every 30 minutes, and each run takes SEVEN samples five minutes apart.
+    #
+    # GitHub decides when a run starts - best-effort, drifting 5-20 minutes under
+    # load - but not what it does once running. Sampling inside the run converts an
+    # unpredictable start time into evenly spaced data. That matters because the
+    # analysis grid distinguishes 16:50 from 17:20; a collector that drifts 20
+    # minutes cannot resolve those, no matter how often it is scheduled.
+    #
+    # Seven samples span 30 minutes against a 30-minute schedule, so consecutive
+    # runs overlap slightly rather than leaving a hole when one starts late.
+    # Overlaps are free: shards are keyed (bucket, station) and deduplicate.
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
-concurrency:
-  group: collect
-  cancel-in-progress: false
+# Deliberately no concurrency group. A late run must not block the next one;
+# duplicate buckets are harmless, a gap is not.
 
 jobs:
   poll:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Poll GBFS
-        run: python3 collect/collect.py --src gha
+      - name: Poll GBFS (7 aligned samples)
+        run: python3 collect/collect.py --src gha --repeat 7
 
-      # Shards go to a throwaway branch, never to main. See ops/push_shards.sh
-      # for why: main's history must only ever receive compacted .csv.gz.
-      - name: Stage shard
+      # One push per run, not one per sample - fewer commits, same data.
+      - name: Stage shards
+        if: always()
         run: ops/push_shards.sh origin data-staging

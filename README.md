@@ -20,19 +20,24 @@ Live dashboard: **`https://<you>.github.io/<repo>/`** (see setup below)
   combining what's there right now, which way it's trending, how far you'd walk,
   and how reliable that station usually is at this hour.
 
-## Why two collectors
+## Collection runs entirely on GitHub
 
-`collect.py` runs in two places and that is deliberate:
+Nothing needs to run on your machine. The Mac is just where you analyse.
 
-| | spacing | uptime |
-|---|---|---|
-| **Mac** (launchd) | exactly 5 min | only while awake — lid closed = no data |
-| **GitHub Actions** | irregular, 5–20 min | ~24/7 |
+The scheduler is the one hard problem here. GitHub decides when a run *starts* —
+best-effort, drifting 5–20 minutes under load — but not what it does once
+running. So each run takes **seven samples five minutes apart**, which converts
+an unpredictable start time into evenly spaced data. That matters because the
+analysis grid distinguishes 16:50 from 17:20; a collector that drifts 20 minutes
+cannot resolve those no matter how often it is scheduled.
 
-They fail in opposite ways, so together they cover the grid far better than
-either alone. Each poll writes a uniquely-named shard (`1720-mac.csv`,
-`1720-gha.csv`), so the two never touch the same file and duplicate buckets
-collapse at DB build time via the `(ts_bucket, station_id)` primary key.
+Seven samples span 30 minutes against a 30-minute schedule, so consecutive runs
+overlap slightly rather than leaving a hole when one starts late. Overlaps cost
+nothing: shards are keyed `(ts_bucket, station_id)` and deduplicate at DB build.
+
+`collect.py` still runs anywhere — `--src mac` and a launchd install are kept in
+`ops/` if you ever want opportunistic local collection on top. Shards are named
+per source (`1720-mac.csv`, `1720-gha.csv`) so the two can never collide.
 
 ## Layout
 
@@ -91,16 +96,7 @@ CSVs diff, merge, and compress. A SQLite binary does none of those.
 
 Everything uses the Python standard library. No pip install.
 
-**1. Local collection**
-
-```bash
-zsh ops/install_launchd.sh
-```
-
-Installs two agents: a 5-minute collector and a 4:10am rollup. Verify with
-`launchctl list | grep citibike`. Remove with `ops/uninstall_launchd.sh`.
-
-**2. GitHub**
+**1. GitHub**
 
 Create a **public** repo — public repos get unlimited Actions minutes, and at
 8,640 runs/month a private repo would exhaust the 2,000-minute free tier in about
@@ -117,7 +113,7 @@ workflows can commit data back.
 The `data-staging` branch is created automatically on the first collector run.
 Never merge it — it is transient shard storage and gets force-reset daily.
 
-**3. Your origin**
+**2. Your origin**
 
 ```bash
 cp config/local.example.json config/local.json
@@ -139,15 +135,28 @@ never committed.
   what the `coverage` table and `ops/health.py` exist to prevent — always read
   coverage before drawing a conclusion about a time slot.
 
-## Daily use
+## Working with the data
+
+Collection is automatic. When you want to analyse, pull and rebuild:
 
 ```bash
-python3 ops/health.py
+ops/pull.sh
 ```
 
+That fetches the history, rebuilds `data/citibike.db`, refreshes the dashboard
+stats and prints a coverage report. From there the database is plain SQLite:
+
 ```bash
-python3 db/build_db.py && python3 analysis/build_stats.py
+sqlite3 data/citibike.db "SELECT s.name, AVG(n.ebikes) FROM snapshots n JOIN stations s USING(sid) WHERE n.dow=4 AND n.mod BETWEEN 1020 AND 1050 GROUP BY 1 ORDER BY 2 DESC LIMIT 10"
 ```
+
+Optional local collection, if you ever want it on top of the cloud:
+
+```bash
+zsh ops/install_launchd.sh
+```
+
+Remove it again with `zsh ops/uninstall_launchd.sh`.
 
 ## Status
 
