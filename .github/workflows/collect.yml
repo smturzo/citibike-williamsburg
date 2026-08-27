@@ -37,5 +37,18 @@ jobs:
 
       # One push per run, not one per sample - fewer commits, same data.
       - name: Stage shards
+        id: stage
         if: always()
         run: ops/push_shards.sh origin data-staging
+
+      # Safety net. A run polls for 30 minutes; if staging fails, that data would
+      # otherwise be discarded with the runner. Keeping it as an artifact means a
+      # staging outage costs a manual recovery, not the data itself.
+      - name: Preserve shards if staging failed
+        if: failure() && steps.stage.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: unstaged-shards-${{ github.run_id }}
+          path: data/raw/**/*.csv
+          retention-days: 14
+          if-no-files-found: ignore
